@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin - Een Simpele Uitleg</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+        
+        section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 30px;
+            text-align: center;
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(247, 147, 26, 0.05), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        
+        .alt-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #fff;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #f7931a 0%, #ffa726 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #fff;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #f7931a;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: #999;
+            margin-top: 20px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #ccc;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #f7931a;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(247, 147, 26, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid #f7931a;
+        }
+        
+        .bitcoin-symbol {
+            font-size: 4rem;
+            color: #f7931a;
+            margin: 30px 0;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .function-list {
+            display: grid;
+            gap: 25px;
+            margin: 40px 0;
+            text-align: left;
+        }
+        
+        .function-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(247, 147, 26, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .function-item:hover {
+            transform: translateX(10px);
+            border-color: #f7931a;
+            background: rgba(247, 147, 26, 0.05);
+        }
+        
+        .function-item strong {
+            color: #f7931a;
+            font-size: 1.3rem;
+        }
+        
+        .properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .property-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(247, 147, 26, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .property-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(247, 147, 26, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+            border-color: #f7931a;
+            box-shadow: 0 20px 40px rgba(247, 147, 26, 0.2);
+        }
+        
+        .property-card:hover::before {
+            opacity: 1;
+        }
+        
+        .icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .property-card h3,
+        .property-card p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .comparison {
+            background: rgba(247, 147, 26, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border-left: 4px solid #f7931a;
+        }
+        
+        .comparison p {
+            color: #fff;
+        }
+        
+        ul {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        li {
+            font-size: 1.2rem;
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border-left: 3px solid #f7931a;
+            color: #ccc;
+            transition: all 0.3s ease;
+        }
+        
+        li:hover {
+            background: rgba(247, 147, 26, 0.1);
+            transform: translateX(10px);
+        }
+        
+        .cta-text {
+            font-size: 1.4rem;
+            color: #fff;
+            font-weight: 500;
+            margin: 30px 0;
+        }
+        
+        .final-message {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #999;
+            margin-top: 40px;
+            line-height: 1.8;
+        }
+        
+        .section-number {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 80px 20px;
+            }
+            
+            .properties {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Scroll animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe all animated elements
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="bitcoin-symbol">₿</div>
+            <h1>Waarom verliest geld eigenlijk steeds zijn waarde?</h1>
+            <p class="subtitle">En is dat onvermijdelijk?</p>
+        </div>
+    </section>
+
+    <!-- Sectie 1: Wat is geld? -->
+    <section class="alt-bg">
+        <div class="container">
+            <div class="section-number fade-in">01 — De Basis</div>
+            <h2 class="fade-in">Wat is geld?</h2>
+            <p class="fade-in">Geld is iets wat we elke dag gebruiken, maar zelden definiëren.</p>
+            <p class="fade-in">In de basis heeft geld drie functies:</p>
+            
+            <div class="function-list">
+                <div class="function-item slide-in-left">
+                    <strong>Ruilmiddel</strong> — Je gebruikt het om dingen te kopen
+                </div>
+                <div class="function-item slide-in-left">
+                    <strong>Rekeneenheid</strong> — Prijzen worden erin uitgedrukt
+                </div>
+                <div class="function-item slide-in-left">
+                    <strong>Opslag van waarde</strong> — Je kunt het bewaren voor later
+                </div>
+            </div>
+            
+            <p class="highlight scale-in">Vooral die laatste functie is belangrijk. Als geld zijn waarde niet behoudt, wordt sparen moeilijk en plannen onzeker.</p>
+        </div>
+    </section>
+
+    <!-- Sectie 2: Hoe werkt ons systeem? -->
+    <section>
+        <div class="container">
+            <div class="section-number fade-in">02 — Het Systeem</div>
+            <h2 class="fade-in">Waarom verliest geld zijn waarde?</h2>
+            <p class="fade-in">In ons huidige systeem kan geld onbeperkt worden bijgemaakt.</p>
+            <p class="fade-in">Dat gebeurt door centrale banken en commerciële banken, meestal met goede bedoelingen: economische groei stimuleren, crises opvangen, werkloosheid beperken.</p>
+            
+            <div class="comparison scale-in">
+                <p><strong>Maar er is een bijwerking.</strong></p>
+                <p>Als er meer geld in omloop komt, wordt elk bestaand eurobiljet een klein beetje minder waard. Dat merk je niet per dag, maar wel over jaren.</p>
+            </div>
+            
+            <p class="fade-in">Daarom:</p>
+            <ul>
+                <li class="slide-in-right">Wordt sparen ontmoedigd</li>
+                <li class="slide-in-right">Moet je "iets met je geld doen"</li>
+                <li class="slide-in-right">Voelt stilzitten als achteruitgaan</li>
+            </ul>
+            
+            <p class="fade-in" style="margin-top: 40px;">Dit is geen complottheorie. Het is simpelweg hoe het systeem ontworpen is.</p>
+        </div>
+    </section>
+
+    <!-- Sectie 3: Van wie is je geld? -->
+    <section class="alt-bg">
+        <div class="container">
+            <div class="section-number fade-in">03 — Eigendom</div>
+            <h2 class="fade-in">Is geld dat op de bank staat echt van jou?</h2>
+            <p class="fade-in">Het meeste geld is tegenwoordig digitaal. Dat is handig, maar het heeft een keerzijde.</p>
+            
+            <p class="fade-in">Je geld:</p>
+            <ul>
+                <li class="slide-in-left">💳 Staat bij een bank</li>
+                <li class="slide-in-left">📊 Bestaat als een tegoed, niet als iets dat je zelf bezit</li>
+                <li class="slide-in-left">📋 Valt onder regels die kunnen veranderen</li>
+            </ul>
+            
+            <p class="fade-in" style="margin-top: 40px;">Meestal werkt dat prima. Maar het betekent wel dat je geld uiteindelijk afhankelijk is van derden: banken, toezichthouders, overheden.</p>
+            
+            <p class="highlight scale-in">Je bezit geen geld. Je hebt een vordering.</p>
+        </div>
+    </section>
+
+    <!-- Sectie 4: De kernvraag -->
+    <section>
+        <div class="container">
+            <div class="section-number">04 — De Vraag</div>
+            <h1 style="font-size: 2.8rem;">Kan geld bestaan dat:</h1>
+            <ul style="max-width: 600px; margin: 50px auto;">
+                <li>niet onbeperkt kan worden bijgemaakt</li>
+                <li>digitaal is</li>
+                <li>en toch écht van jou is?</li>
+            </ul>
+            <div class="bitcoin-symbol">₿</div>
+            <p class="cta-text">Bitcoin is een poging om die vraag te beantwoorden.</p>
+        </div>
+    </section>
+
+    <!-- Sectie 5: Wat bitcoin anders maakt -->
+    <section class="alt-bg">
+        <div class="container">
+            <div class="section-number">05 — De Eigenschappen</div>
+            <h2>Wat is bitcoin in de kern?</h2>
+            <p>Bitcoin is digitaal geld met vaste spelregels.</p>
+            <p>Die spelregels zijn vanaf het begin vastgelegd en kunnen niet zomaar worden aangepast, door niemand.</p>
+            
+            <div class="properties">
+                <div class="property-card">
+                    <span class="icon">💎</span>
+                    <h3>Schaarste</h3>
+                    <p>Er zullen nooit meer dan een vaste hoeveelheid bitcoins bestaan. Niemand kan dat veranderen.</p>
+                </div>
+                <div class="property-card">
+                    <span class="icon">🔑</span>
+                    <h3>Eigendom</h3>
+                    <p>Je kunt bitcoin zelf bezitten, zonder bank. Net zoals contant geld, maar dan digitaal.</p>
+                </div>
+                <div class="property-card">
+                    <span class="icon">⚖️</span>
+                    <h3>Neutraliteit</h3>
+                    <p>Bitcoin is geen bedrijf, geen land en geen organisatie. Het draait op vaste regels die voor iedereen gelijk zijn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sectie 6: Waarom "goed geld"? -->
+    <section>
+        <div class="container">
+            <div class="section-number">06 — Hard Geld</div>
+            <h2>Waarom noemen mensen bitcoin beter geld?</h2>
+            <p>Door die eigenschappen zien sommige mensen bitcoin als een vorm van "hard geld".</p>
+            <p>Niet omdat het perfect is, maar omdat het:</p>
+            
+            <ul style="max-width: 600px; margin: 40px auto;">
+                <li>Niet kan worden bijgemaakt</li>
+                <li>Niet afhankelijk is van vertrouwen in één partij</li>
+                <li>Over lange tijd hetzelfde blijft</li>
+            </ul>
+            
+            <div class="comparison">
+                <p><strong>Vergelijk het met digitaal goud, maar dan:</strong></p>
+                <p>✓ Makkelijk te verplaatsen<br>
+                ✓ Makkelijk op te delen<br>
+                ✓ Makkelijk te bewaren</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sectie 7: Is het moeilijk? -->
+    <section class="alt-bg">
+        <div class="container">
+            <div class="section-number">07 — Toegankelijkheid</div>
+            <h2>Is bitcoin niet ingewikkeld of duur?</h2>
+            <p>Dat denken veel mensen, maar in de praktijk valt het mee.</p>
+            
+            <p class="highlight">Je hoeft geen hele bitcoin te kopen. Bitcoin is op te delen in hele kleine stukjes. Net zoals je geen hele kilo goud hoeft te kopen.</p>
+            
+            <p>Je kunt:</p>
+            <ul style="max-width: 600px; margin: 40px auto;">
+                <li>Met kleine bedragen beginnen</li>
+                <li>Het zelf bewaren op je telefoon of computer</li>
+                <li>Of het laten beheren, net zoals bij online bankieren</li>
+            </ul>
+            
+            <p style="margin-top: 40px;">Je hoeft geen technische kennis te hebben om het te bezitten. Net zoals je niet hoeft te weten hoe het internet werkt om een e-mail te sturen.</p>
+        </div>
+    </section>
+
+    <!-- Sectie 8: Afsluiting -->
+    <section>
+        <div class="container">
+            <div class="section-number">08 — Tot Slot</div>
+            <h2>Wat je hier niet hoeft te doen</h2>
+            <p class="cta-text">Je hoeft bitcoin niet te kopen.<br>
+            Je hoeft het er niet mee eens te zijn.<br>
+            Je hoeft niet te geloven dat het de wereld verandert.</p>
+            
+            <div class="bitcoin-symbol" style="margin: 50px 0;">₿</div>
+            
+            <p class="final-message">Het enige doel van deze pagina is dit:<br><br>
+            Dat je begrijpt welk probleem bitcoin probeert op te lossen<br>
+            en waarom sommige mensen het serieus nemen als geld.</p>
+        </div>
+    </section>
+</body>
+</html>
