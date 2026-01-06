@@ -27,10 +27,8 @@
         /* rest van je CSS ongewijzigd */
     </style>
 </head>
-
 <body>
     <script>
-        // Scroll animation observer
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -44,14 +42,13 @@
             });
         }, observerOptions);
 
-        // Wait for DOM to load
         document.addEventListener('DOMContentLoaded', () => {
-            // Observe all animated elements
             document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
                 observer.observe(el);
             });
         });
     </script>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -132,38 +129,38 @@
     <!-- Sectie 4: De kernvraag -->
     <section>
         <div class="container">
-            <div class="section-number">04 — De Vraag</div>
-            <h1 style="font-size: 2.8rem;">Kan geld bestaan dat:</h1>
+            <div class="section-number fade-in">04 — De Vraag</div>
+            <h1 class="fade-in" style="font-size: 2.8rem;">Kan geld bestaan dat:</h1>
             <ul style="max-width: 600px; margin: 50px auto;">
-                <li>niet onbeperkt kan worden bijgemaakt</li>
-                <li>digitaal is</li>
-                <li>en toch écht van jou is?</li>
+                <li class="slide-in-left">niet onbeperkt kan worden bijgemaakt</li>
+                <li class="slide-in-left">digitaal is</li>
+                <li class="slide-in-left">en toch écht van jou is?</li>
             </ul>
-            <div class="bitcoin-symbol">₿</div>
-            <p class="cta-text">Bitcoin is een poging om die vraag te beantwoorden.</p>
+            <div class="bitcoin-symbol scale-in">₿</div>
+            <p class="cta-text fade-in">Bitcoin is een poging om die vraag te beantwoorden.</p>
         </div>
     </section>
 
     <!-- Sectie 5: Wat bitcoin anders maakt -->
     <section class="alt-bg">
         <div class="container">
-            <div class="section-number">05 — De Eigenschappen</div>
-            <h2>Wat is bitcoin in de kern?</h2>
-            <p>Bitcoin is digitaal geld met vaste spelregels.</p>
-            <p>Die spelregels zijn vanaf het begin vastgelegd en kunnen niet zomaar worden aangepast, door niemand.</p>
+            <div class="section-number fade-in">05 — De Eigenschappen</div>
+            <h2 class="fade-in">Wat is bitcoin in de kern?</h2>
+            <p class="fade-in">Bitcoin is digitaal geld met vaste spelregels.</p>
+            <p class="fade-in">Die spelregels zijn vanaf het begin vastgelegd en kunnen niet zomaar worden aangepast, door niemand.</p>
             
             <div class="properties">
-                <div class="property-card">
+                <div class="property-card scale-in">
                     <span class="icon">💎</span>
                     <h3>Schaarste</h3>
                     <p>Er zullen nooit meer dan een vaste hoeveelheid bitcoins bestaan. Niemand kan dat veranderen.</p>
                 </div>
-                <div class="property-card">
+                <div class="property-card scale-in">
                     <span class="icon">🔑</span>
                     <h3>Eigendom</h3>
                     <p>Je kunt bitcoin zelf bezitten, zonder bank. Net zoals contant geld, maar dan digitaal.</p>
                 </div>
-                <div class="property-card">
+                <div class="property-card scale-in">
                     <span class="icon">⚖️</span>
                     <h3>Neutraliteit</h3>
                     <p>Bitcoin is geen bedrijf, geen land en geen organisatie. Het draait op vaste regels die voor iedereen gelijk zijn.</p>
@@ -175,18 +172,18 @@
     <!-- Sectie 6: Waarom "goed geld"? -->
     <section>
         <div class="container">
-            <div class="section-number">06 — Hard Geld</div>
-            <h2>Waarom noemen mensen bitcoin beter geld?</h2>
-            <p>Door die eigenschappen zien sommige mensen bitcoin als een vorm van "hard geld".</p>
-            <p>Niet omdat het perfect is, maar omdat het:</p>
+            <div class="section-number fade-in">06 — Hard Geld</div>
+            <h2 class="fade-in">Waarom noemen mensen bitcoin beter geld?</h2>
+            <p class="fade-in">Door die eigenschappen zien sommige mensen bitcoin als een vorm van "hard geld".</p>
+            <p class="fade-in">Niet omdat het perfect is, maar omdat het:</p>
             
             <ul style="max-width: 600px; margin: 40px auto;">
-                <li>Niet kan worden bijgemaakt</li>
-                <li>Niet afhankelijk is van vertrouwen in één partij</li>
-                <li>Over lange tijd hetzelfde blijft</li>
+                <li class="slide-in-left">Niet kan worden bijgemaakt</li>
+                <li class="slide-in-left">Niet afhankelijk is van vertrouwen in één partij</li>
+                <li class="slide-in-left">Over lange tijd hetzelfde blijft</li>
             </ul>
             
-            <div class="comparison">
+            <div class="comparison scale-in">
                 <p><strong>Vergelijk het met digitaal goud, maar dan:</strong></p>
                 <p>✓ Makkelijk te verplaatsen<br>
                 ✓ Makkelijk op te delen<br>
@@ -198,38 +195,110 @@
     <!-- Sectie 7: Is het moeilijk? -->
     <section class="alt-bg">
         <div class="container">
-            <div class="section-number">07 — Toegankelijkheid</div>
-            <h2>Is bitcoin niet ingewikkeld of duur?</h2>
-            <p>Dat denken veel mensen, maar in de praktijk valt het mee.</p>
+            <div class="section-number fade-in">07 — Toegankelijkheid</div>
+            <h2 class="fade-in">Is bitcoin niet ingewikkeld of duur?</h2>
+            <p class="fade-in">Dat denken veel mensen, maar in de praktijk valt het mee.</p>
             
-            <p class="highlight">Je hoeft geen hele bitcoin te kopen. Bitcoin is op te delen in hele kleine stukjes. Net zoals je geen hele kilo goud hoeft te kopen.</p>
+            <p class="highlight scale-in">Je hoeft geen hele bitcoin te kopen. Bitcoin is op te delen in hele kleine stukjes. Net zoals je geen hele kilo goud hoeft te kopen.</p>
             
-            <p>Je kunt:</p>
+            <p class="fade-in">Je kunt:</p>
             <ul style="max-width: 600px; margin: 40px auto;">
-                <li>Met kleine bedragen beginnen</li>
-                <li>Het zelf bewaren op je telefoon of computer</li>
-                <li>Of het laten beheren, net zoals bij online bankieren</li>
+                <li class="slide-in-right">Met kleine bedragen beginnen</li>
+                <li class="slide-in-right">Het zelf bewaren op je telefoon of computer</li>
+                <li class="slide-in-right">Of het laten beheren, net zoals bij online bankieren</li>
             </ul>
             
-            <p style="margin-top: 40px;">Je hoeft geen technische kennis te hebben om het te bezitten. Net zoals je niet hoeft te weten hoe het internet werkt om een e-mail te sturen.</p>
+            <p class="fade-in" style="margin-top: 40px;">Je hoeft geen technische kennis te hebben om het te bezitten. Net zoals je niet hoeft te weten hoe het internet werkt om een e-mail te sturen.</p>
         </div>
     </section>
 
     <!-- Sectie 8: Afsluiting -->
     <section>
         <div class="container">
-            <div class="section-number">08 — Tot Slot</div>
-            <h2>Wat je hier niet hoeft te doen</h2>
-            <p class="cta-text">Je hoeft bitcoin niet te kopen.<br>
+            <div class="section-number fade-in">08 — Tot Slot</div>
+            <h2 class="fade-in">Wat je hier niet hoeft te doen</h2>
+            <p class="cta-text fade-in">Je hoeft bitcoin niet te kopen.<br>
             Je hoeft het er niet mee eens te zijn.<br>
             Je hoeft niet te geloven dat het de wereld verandert.</p>
             
-            <div class="bitcoin-symbol" style="margin: 50px 0;">₿</div>
+            <div class="bitcoin-symbol scale-in" style="margin: 50px 0;">₿</div>
             
-            <p class="final-message">Het enige doel van deze pagina is dit:<br><br>
+            <p class="final-message fade-in">Het enige doel van deze pagina is dit:<br><br>
             Dat je begrijpt welk probleem bitcoin probeert op te lossen<br>
             en waarom sommige mensen het serieus nemen als geld.</p>
         </div>
     </section>
-</body>
-</html>
+
+    <!-- Sectie 9: Verder lezen/luisteren -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">09 — Optioneel Verder</div>
+        <h2 class="fade-in">Verder lezen of luisteren</h2>
+        <p class="fade-in">Voor wie dit onderwerp interessant vindt en zelf verder wil verkennen, zijn hier een paar Nederlandstalige podcasts en boeken. Ze zijn bedoeld als verdieping, niet als advies.</p>
+        
+        <div class="resources-section">
+            <h3 class="fade-in">🎧 Podcasts</h3>
+            
+            <div class="resource-item slide-in-left">
+                <a href="https://bitcoinschool.nl/" target="_blank" style="text-decoration: none; color: inherit;">
+                    <strong>Bitcoin School</strong>
+                </a>
+                <p>Stap voor stap uitleg over wat bitcoin is, waarom het bestaat en hoe je er praktisch mee kunt leren werken. Zeer geschikt voor beginners.</p>
+            </div>
+
+            <div class="resource-item slide-in-left">
+                <a href="https://bitcoin.nl/podcast/beginnen-met-bitcoin" target="_blank" style="text-decoration: none; color: inherit;">
+                    <strong>Beginnen met Bitcoin</strong>
+                </a>
+                <p>Korte afleveringen over de basis van bitcoin, wallets en hoe je zelf kunt beginnen. Ideaal als je net start met het onderwerp.</p>
+            </div>
+        </div>
+
+        <div class="resources-section" style="margin-top: 50px;">
+            <h3 class="fade-in">📚 Boeken</h3>
+
+            <div class="resource-item slide-in-right">
+                <a href="https://bitcoinbrabant.com/product-categorie/learn/boeken/" target="_blank" style="text-decoration: none; color: inherit;">
+                    <strong>De Bitcoin Standaard – Saifedean Ammous</strong>
+                </a>
+                <p>Legt uit wat geld is, waarom schaarste belangrijk is en hoe bitcoin daarin past. Helpt begrijpen welk probleem bitcoin probeert op te lossen.</p>
+            </div>
+
+            <div class="resource-item slide-in-right">
+                <a href="https://www.bol.com/nl/nl/p/broken-money-why-our-financial-system-is-failing-us-and-how-we-can-make-it-better/9300000169833203/?cid=1767703799429-7880721207086&bltgh=7b016eaa-45eb-4e98-8f8c-e6c6ea8506bf.ProductList_Middle.0.ProductImage" target="_blank" style="text-decoration: none; color: inherit;">
+                    <strong>Broken Money – Lyn Alden</strong>
+                </a>
+                <p>Toegankelijke uitleg van hoe het huidige geldsysteem werkt en hoe bitcoin daarin kan passen. Geschikt voor sceptici die nuchter willen begrijpen.</p>
+            </div>
+
+            <div class="resource-item slide-in-right">
+                <a href="https://www.bol.com/nl/nl/f/layered-money/9300000023016504/" target="_blank" style="text-decoration: none; color: inherit;">
+                    <strong>Layered Money – Nik Bhatia</strong>
+                </a>
+                <p>Toont hoe geld in lagen werkt en hoe bitcoin zich verhoudt tot goud en bankgeld. Helpt het grotere plaatje te zien zonder technische details.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Sectie 10: Donaties -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">10 — Support</div>
+        <h2 class="fade-in">Vond je dit nuttig?</h2>
+        <p class="fade-in">Als je deze uitleg waardevol vond, kun je een kleine donatie in bitcoin (sats) sturen.</p>
+        
+        <div class="donation-box scale-in" style="text-align: center;">
+            <div class="qr-container" style="display: inline-block; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                <img src="qr_download.png" alt="Bitcoin QR-code" style="width: 200px; height: 200px; object-fit: contain; display: block; margin: 0 auto 15px;">
+                <p style="margin-top: 0; color: #666; font-size: 0.9rem;">Scan de QR-code om te doneren</p>
+            </div>
+
+            <p class="lightning-address" style="margin-top: 15px; font-weight: bold; font-size: 1rem;">⚡ l3and3r@getalby.com</p>
+            <p style="font-size: 0.9rem; color: #999; margin-top: 5px;">Kopieer het Lightning adres in je wallet</p>
+        </div>
+        
+        <p class="fade-in" style="margin-top: 40px; font-size: 1rem; color: #999;">Alle donaties zijn vrijwillig en helpen om content zoals deze te maken.</p>
+    </div>
+</section>
