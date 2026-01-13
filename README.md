@@ -208,6 +208,7 @@ Ontworpen en gebouwd voor familie en vrienden die Bitcoin willen begrijpen zonde
 Voor vragen of feedback:
 - GitHub Issues: [Open een issue](../../issues)
 - Lightning: `l3and3r@getalby.com`
+- Telefoon: 0800-cry-harder
 
 ---
 
