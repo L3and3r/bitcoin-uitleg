@@ -55,6 +55,7 @@
         .slide-in-right.visible { opacity:1; transform:translateX(0); }
         .scale-in { opacity:0; transform:scale(0.8); transition:opacity 0.8s ease-out, transform 0.8s ease-out; }
         .scale-in.visible { opacity:1; transform:scale(1); }
+        
         @media (max-width:768px) { h1{font-size:2.5rem;} h2{font-size:2rem;} section{padding:80px 20px;} .properties{grid-template-columns:1fr;} }
     </style>
 </head>
@@ -62,8 +63,13 @@
 
 <script>
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+    entries.forEach(entry => { 
+        if(entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
 }, { threshold:0.1, rootMargin:'0px 0px -100px 0px' });
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fade-in,.slide-in-left,.slide-in-right,.scale-in').forEach(el => observer.observe(el));
 });
@@ -248,6 +254,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="resource-item slide-in-left">
                 <a href="https://bitcoin.nl/podcast/beginnen-met-bitcoin" target="_blank">Beginnen met Bitcoin</a>
                 <p>Korte afleveringen over de basis van bitcoin, wallets en hoe je zelf kunt beginnen. Ideaal als je net start met het onderwerp.</p>
+            </div>
+        </div>
+
+        <div class="resources-section" style="margin-top:50px;">
+            <h3 class="fade-in">🎓 Cursussen</h3>
+            <div class="resource-item slide-in-left">
+                <a href="https://mijneerstebitcoin.school/" target="_blank">Mijn Eerste Bitcoin</a>
+                <p>Het officiële Bitcoin‑diploma & gratis lesmateriaal. Open‑source lesmateriaal om studenten, docenten, bedrijven en community's essentiële financiële kennis en begrip van Bitcoin te geven.</p>
             </div>
         </div>
 
