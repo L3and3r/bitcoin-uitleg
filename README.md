@@ -20,34 +20,35 @@ De website is bewust ontworpen om:
 
 ## ✨ Features
 
-### 🎬 Auto-scroll Presentatie Modus
-- Scrollt automatisch elke 8 seconden naar de volgende sectie
-- Stopt zodra je zelf scrollt, klikt of tikt
-- Play/pause knop rechtsonder voor volledige controle
-- Perfect voor "lean-back" lezen op de bank
-
-### 📱 Volledig Responsive
-- Werkt perfect op desktop, tablet en smartphone
-- Touch-vriendelijke bediening
-- Geoptimaliseerd voor alle schermformaten
-
 ### 🎨 Moderne UI/UX
 - Donker thema met Bitcoin-oranje accenten
 - Smooth scroll-animaties die activeren bij het in beeld komen
 - Hover-effecten op interactieve elementen
-- Progress bar bovenaan toont voortgang
-- Sectie-indicators (desktop) voor snelle navigatie
+- Volledig responsive design voor desktop, tablet en smartphone
 
-### ⚡ Lightning Donaties
-- Ingebouwde Lightning Address voor Bitcoin-donaties
-- QR-code voor makkelijk scannen
-- Optioneel - kan eenvoudig verwijderd worden
+### 📱 Mobile-First Design
+- Touch-vriendelijke bediening
+- Geoptimaliseerd voor alle schermformaten
+- Snelle laadtijd, geen externe dependencies
+
+### 🎥 Multimedia Content
+- Embedded YouTube video ("What's the problem?")
+- Visuele uitleg van het probleem dat Bitcoin oplost
+
+### 📚 Uitgebreide Resources
+- Nederlandse podcasts (Bitcoin School, Beginnen met Bitcoin)
+- Cursusmateriaal (Mijn Eerste Bitcoin)
+- Boeken (The Bitcoin Standard, Broken Money, Layered Money)
+
+### ⚡ Contact & Donaties
+- Lightning Network donatie-optie met QR-code
+- Nostr contactgegevens voor vragen en feedback
 
 ---
 
 ## 🏗️ Structuur
 
-De website bestaat uit 11 secties:
+De website bestaat uit 12 secties:
 
 1. **Hero** - Openingsvraag over waardeverlies van geld
 2. **Wat is geld?** - De drie functies van geld
@@ -55,12 +56,13 @@ De website bestaat uit 11 secties:
 4. **Eigendom** - Is bankgeld echt van jou?
 5. **De kernvraag** - Kan digitaal geld schaars zijn?
 6. **Bitcoin eigenschappen** - Schaarste, eigendom, neutraliteit
-7. **Bitcoin vs Crypto** - Het fundamentele verschil
+7. **Bitcoin vs Crypto** - Het fundamentele verschil (decentralisatie, geen eigenaar, absolute schaarsheid)
 8. **Hard geld** - Waarom mensen het "beter geld" noemen
 9. **Toegankelijkheid** - Het is makkelijker dan je denkt
 10. **Tot slot** - Je hoeft niets te doen
-11. **Resources** - Podcasts en boeken voor verdieping
-12. **Donaties** - Optionele Lightning donatie-optie
+11. **Video** - "What's the problem?" YouTube video
+12. **Resources** - Podcasts, cursussen en boeken voor verdieping
+13. **Support & Contact** - Lightning donaties en Nostr contactgegevens
 
 ---
 
@@ -83,7 +85,7 @@ De website bestaat uit 11 secties:
    - Klik op "Pages" in het linkermenu
    - Bij "Source" selecteer `main` branch en `/ (root)`
    - Klik "Save"
-   - Je site is live op: `https://L3and3r.github.io/bitcoin-uitleg`
+   - Je site is live op: `https://[jouw-username].github.io/[repo-naam]`
 
 ### Lokaal Testen
 
@@ -208,7 +210,6 @@ Ontworpen en gebouwd voor familie en vrienden die Bitcoin willen begrijpen zonde
 Voor vragen of feedback:
 - GitHub Issues: [Open een issue](../../issues)
 - Lightning: `l3and3r@getalby.com`
-- Telefoon: 0800-CRY-HARDER
 
 ---
 
