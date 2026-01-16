@@ -1,6 +1,6 @@
 # Bitcoin Uitgelegd 🪙
 
-Een rustige, toegankelijke uitleg over Bitcoin voor familie, vrienden en alle anderen die interesse hebben die willen begrijpen wat het is en welk probleem het probeert op te lossen.
+Een rustige, toegankelijke uitleg over Bitcoin voor familie, vrienden en alle anderen die willen begrijpen wat het is en welk probleem het probeert op te lossen.
 
 **Live demo:** https://l3and3r.github.io/bitcoin-uitleg/
 
