@@ -4,36 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binnenkort | Bitcoin Uitgelegd</title>
-    <meta name="description" content="Deze verdiepingspagina van Bitcoin Uitgelegd wordt momenteel geschreven.">
+    <meta name="description" content="Deze pagina van Bitcoin Uitgelegd wordt momenteel geschreven.">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
+<!-- Navigation -->
 <nav class="main-nav">
-    <!-- zelfde nav als andere pagina’s -->
+    <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+            <span>Bitcoin Uitgelegd</span>
+        </a>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="wat-is-geld.html">Wat is Geld?</a></li>
+            <li><a href="#">Binnenkort</a></li>
+        </ul>
+    </div>
 </nav>
 
-<section class="alt-bg">
+<!-- Hero -->
+<section class="hero">
     <div class="container">
         <div class="section-number fade-in">Binnenkort</div>
-        <h1 class="fade-in">Deze pagina wordt nog uitgewerkt</h1>
-
-        <p class="fade-in">
-            Deze verdiepingspagina maakt onderdeel uit van Bitcoin Uitgelegd,
-            maar de inhoud wordt momenteel nog geschreven.
-        </p>
-
-        <p class="highlight scale-in">
-            Kom later terug — de uitleg volgt binnenkort.
+        <h1 class="fade-in">Deze pagina wordt nog geschreven</h1>
+        <p class="subtitle fade-in">
+            De uitleg volgt binnenkort, in dezelfde rustige en duidelijke stijl.
         </p>
     </div>
 </section>
 
+<!-- Content -->
+<section class="alt-bg">
+    <div class="container">
+        <h2 class="fade-in">Waarom zie je dit?</h2>
+
+        <p class="fade-in">
+            Deze verdiepingspagina maakt onderdeel uit van <strong>Bitcoin Uitgelegd</strong>,
+            maar de inhoud wordt momenteel nog uitgewerkt.
+        </p>
+
+        <p class="fade-in">
+            Het doel is om stap voor stap uit te leggen hoe Bitcoin werkt,
+            zonder technisch jargon en zonder aannames over voorkennis.
+        </p>
+
+        <p class="highlight scale-in">
+            Kom later terug — deze pagina wordt binnenkort aangevuld.
+        </p>
+    </div>
+</section>
+
+<!-- Footer -->
 <footer class="site-footer">
-    <!-- zelfde footer -->
+    <div class="footer-links">
+        <a href="../index.html">Home</a>
+    </div>
+    <p class="footer-note">
+        Gemaakt met ₿ | Geen financieel advies
+    </p>
 </footer>
+
+<script>
+function toggleMobileMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+</script>
 
 </body>
 </html>
-
