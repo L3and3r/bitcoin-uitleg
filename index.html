@@ -3,66 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin - Een Simpele Uitleg</title>
+    <title>Bitcoin Uitgelegd - Een Simpele Uitleg Voor Iedereen</title>
+    <meta name="description" content="Begrijp welk probleem Bitcoin probeert op te lossen, zonder technisch jargon. Een rustige, toegankelijke uitleg voor familie en vrienden.">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.6; color:#ccc; background:#0a0a0a; overflow-x:hidden; }
-        section { position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:100px 30px; text-align:center; }
-        section::before { content:''; position:absolute; inset:0; background:radial-gradient(circle, rgba(247,147,26,0.05), transparent 70%); pointer-events:none; }
-        .hero { background:linear-gradient(135deg, #0a0a0a, #1a1a1a); }
-        .alt-bg { background:linear-gradient(135deg, #1a1a1a, #0a0a0a); }
-        .container { max-width:800px; width:100%; position:relative; z-index:1; }
-        h1 { font-size:3.5rem; font-weight:700; margin-bottom:30px; line-height:1.2; background:linear-gradient(135deg, #f7931a, #ffa726); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:fadeInUp 0.8s ease-out; }
-        h2 { font-size:2.5rem; font-weight:600; margin-bottom:40px; color:#fff; }
-        h3 { font-size:1.8rem; font-weight:600; margin-bottom:20px; color:#f7931a; }
-        .subtitle { font-size:1.4rem; color:#999; margin-top:20px; }
-        p { font-size:1.2rem; margin-bottom:25px; line-height:1.8; }
-        .highlight { font-size:1.5rem; font-weight:500; color:#f7931a; margin:40px 0; padding:30px; background:rgba(247,147,26,0.1); border-radius:15px; border-left:4px solid #f7931a; }
-        .bitcoin-symbol { font-size:4rem; color:#f7931a; margin:30px 0; display:inline-block; animation:pulse 2s ease-in-out infinite; }
-        @keyframes pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.05);opacity:0.8;} }
-        @keyframes fadeInUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
-        .function-list, ul { list-style:none; margin:30px 0; text-align:left; }
-        .function-item, li { padding:20px 25px; margin:15px 0; background:rgba(255,255,255,0.03); border-radius:10px; border-left:3px solid #f7931a; transition:all 0.3s ease; }
-        .function-item:hover, li:hover { background:rgba(247,147,26,0.1); transform:translateX(10px); }
-        .function-item strong { color:#f7931a; font-size:1.3rem; }
-        .properties { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; margin:50px 0; }
-        .property-card { background:rgba(255,255,255,0.03); padding:40px 30px; border-radius:15px; border:1px solid rgba(247,147,26,0.2); transition:all 0.4s ease; position:relative; overflow:hidden; }
-        .property-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(247,147,26,0.1), transparent); opacity:0; transition:opacity 0.4s; }
-        .property-card:hover { transform:translateY(-10px); border-color:#f7931a; box-shadow:0 20px 40px rgba(247,147,26,0.2); }
-        .property-card:hover::before { opacity:1; }
-        .icon { font-size:3.5rem; margin-bottom:20px; display:block; position:relative; z-index:1; }
-        .property-card h3, .property-card p { position:relative; z-index:1; }
-        .comparison { background:rgba(247,147,26,0.05); border-radius:15px; padding:30px; margin:40px 0; border-left:4px solid #f7931a; }
-        .comparison p { color:#fff; }
-        .cta-text { font-size:1.4rem; color:#fff; font-weight:500; margin:30px 0; }
-        .final-message { font-size:1.3rem; font-style:italic; color:#999; margin-top:40px; line-height:1.8; }
-        .section-number { font-size:0.9rem; color:#666; text-transform:uppercase; letter-spacing:2px; margin-bottom:20px; }
-        .resources-section { text-align:left; margin:40px 0; }
-        .resource-item { margin-bottom:25px; }
-        .resource-item a { color:#fff; text-decoration:none; font-weight:600; font-size:1.2rem; transition:color 0.3s; }
-        .resource-item a:hover { color:#f7931a; }
-        .resource-item p { color:#ccc; margin-top:5px; }
-        .donation-box { margin:40px auto; max-width:500px; }
-        .qr-container { display:inline-block; background:#fff; padding:15px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
-        .qr-container img { width:200px; height:200px; display:block; }
-        .lightning-address { margin-top:15px; font-weight:bold; font-size:1rem; color:#f7931a; word-break:break-all; }
-        .video-container { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; max-width:100%; margin:40px auto; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.3); }
-        .video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:15px; }
-        .fade-in { opacity:0; transform:translateY(30px); transition:opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in.visible { opacity:1; transform:translateY(0); }
-        .slide-in-left { opacity:0; transform:translateX(-50px); transition:opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .slide-in-left.visible { opacity:1; transform:translateX(0); }
-        .slide-in-right { opacity:0; transform:translateX(50px); transition:opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .slide-in-right.visible { opacity:1; transform:translateX(0); }
-        .scale-in { opacity:0; transform:scale(0.8); transition:opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .scale-in.visible { opacity:1; transform:scale(1); }
-        
-        @media (max-width:768px) { h1{font-size:2.5rem;} h2{font-size:2rem;} section{padding:80px 20px;} .properties{grid-template-columns:1fr;} }
-    </style>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
+<!-- Navigation -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#f7931a"/>
+                <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
+            </svg>
+            <span>Bitcoin Uitgelegd</span>
+        </a>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="pages/wat-is-geld.html">Wat is Geld?</a></li>
+            <li><a href="pages/bitcoin-vs-crypto.html">BTC vs Crypto</a></li>
+            <li><a href="pages/hoe-werkt-bitcoin.html">Hoe Werkt Het?</a></li>
+            <li><a href="pages/zelf-beginnen.html">Zelf Beginnen</a></li>
+            <li><a href="pages/resources.html">Resources</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- JavaScript voor animaties en navigatie -->
 <script>
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { 
@@ -75,16 +45,32 @@ const observer = new IntersectionObserver((entries) => {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fade-in,.slide-in-left,.slide-in-right,.scale-in').forEach(el => observer.observe(el));
 });
+
+function toggleMobileMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+
+// Back to top button
+window.addEventListener('scroll', () => {
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    }
+});
 </script>
 
 <section class="hero">
     <div class="container">
         <div class="bitcoin-symbol">
-  <svg width="80" height="80" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="32" cy="32" r="32" fill="#f7931a"/>
-    <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
-  </svg>
-</div>
+            <svg width="80" height="80" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#f7931a"/>
+                <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
+            </svg>
+        </div>
         <h1>Waarom verliest geld eigenlijk steeds zijn waarde?</h1>
         <p class="subtitle">En is dat onvermijdelijk?</p>
     </div>
@@ -102,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="function-item slide-in-left"><strong>Opslag van waarde</strong> — Je kunt het bewaren voor later</div>
         </div>
         <p class="highlight scale-in">Vooral die laatste functie is belangrijk. Als geld zijn waarde niet behoudt, wordt sparen moeilijk en plannen onzeker.</p>
+        <p class="fade-in" style="margin-top:40px;"><a href="pages/wat-is-geld.html" style="color:#f7931a;text-decoration:none;font-weight:600;">→ Lees meer over hoe ons geldsysteem werkt</a></p>
     </div>
 </section>
 
@@ -150,12 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <li class="slide-in-left">digitaal is</li>
             <li class="slide-in-left">en toch écht van jou is?</li>
         </ul>
-        <div class="bitcoin-symbol scale-in" style="margin:50px 0;">
-  <svg width="80" height="80" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="32" cy="32" r="32" fill="#f7931a"/>
-    <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
-  </svg>
-</div>
+        <div class="bitcoin-symbol scale-in">
+            <svg width="80" height="80" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#f7931a"/>
+                <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
+            </svg>
+        </div>
         <p class="cta-text fade-in">Bitcoin is een poging om die vraag te beantwoorden.</p>
     </div>
 </section>
@@ -191,19 +178,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="section-number fade-in">06 — Het Verschil</div>
         <h2 class="fade-in">Is bitcoin niet gewoon "crypto"?</h2>
         <p class="fade-in">Nee. Hoewel bitcoin vaak in één adem wordt genoemd met "crypto", zijn er fundamentele verschillen.</p>
-        
         <div class="comparison scale-in" style="text-align:left;">
             <p><strong>Bitcoin is uniek omdat:</strong></p>
             <p style="margin-top:15px;">
-                <strong style="color:#f7931a;">Geen eigenaar →</strong> Bitcoin heeft geen oprichter, geen CEO, geen bedrijf dat het controleert. Het is echt niemands eigendom.<br><br>
-                <strong style="color:#f7931a;">Volledig gedecentraliseerd →</strong> Duizenden computers wereldwijd draaien het netwerk. Niemand kan het uitschakelen of veranderen.<br><br>
-                <strong style="color:#f7931a;">Absolute digitale schaarsheid →</strong> Er zullen nooit meer dan 21 miljoen bitcoins bestaan. Dit kan niet worden veranderd, door niemand.
+                <strong style="color:#f7931a;">Geen eigenaar →</strong> Bitcoin heeft geen oprichter, geen CEO, geen bedrijf dat het controleert.<br><br>
+                <strong style="color:#f7931a;">Volledig gedecentraliseerd →</strong> Duizenden computers wereldwijd draaien het netwerk.<br><br>
+                <strong style="color:#f7931a;">Absolute digitale schaarsheid →</strong> Er zullen nooit meer dan 21 miljoen bitcoins bestaan.
             </p>
         </div>
-
         <p class="fade-in" style="margin-top:40px;">De meeste andere crypto's hebben een oprichter, een team, of een organisatie die beslissingen neemt. Bitcoin niet.</p>
-        
-        <p class="highlight scale-in">Bitcoin is het enige digitale geld dat niet afhankelijk is van vertrouwen in een persoon, bedrijf of organisatie.</p>
+        <p class="fade-in" style="margin-top:30px;"><a href="pages/bitcoin-vs-crypto.html" style="color:#f7931a;text-decoration:none;font-weight:600;">→ Lees waarom dit onderscheid cruciaal is</a></p>
     </div>
 </section>
 
@@ -238,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <li class="slide-in-right">Of het laten beheren, net zoals bij online bankieren</li>
         </ul>
         <p class="fade-in" style="margin-top:40px;">Je hoeft geen technische kennis te hebben om het te bezitten. Net zoals je niet hoeft te weten hoe het internet werkt om een e-mail te sturen.</p>
+        <p class="fade-in" style="margin-top:30px;"><a href="pages/zelf-beginnen.html" style="color:#f7931a;text-decoration:none;font-weight:600;">→ Bekijk de stap-voor-stap handleiding</a></p>
     </div>
 </section>
 
@@ -247,11 +232,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2 class="fade-in">Wat je hier niet hoeft te doen</h2>
         <p class="cta-text fade-in">Je hoeft bitcoin niet te kopen.<br>Je hoeft het er niet mee eens te zijn.<br>Je hoeft niet te geloven dat het de wereld verandert.</p>
         <div class="bitcoin-symbol scale-in" style="margin:50px 0;">
-  <svg width="80" height="80" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="32" cy="32" r="32" fill="#f7931a"/>
-    <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
-  </svg>
-</div>
+            <svg width="80" height="80" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#f7931a"/>
+                <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
+            </svg>
+        </div>
         <p class="final-message fade-in">Het enige doel van deze pagina is dit:<br><br>Dat je begrijpt welk probleem bitcoin probeert op te lossen<br>en waarom sommige mensen het serieus nemen als geld.</p>
     </div>
 </section>
@@ -270,56 +255,21 @@ document.addEventListener('DOMContentLoaded', () => {
 <section class="alt-bg">
     <div class="container">
         <div class="section-number fade-in">11 — Optioneel Verder</div>
-        <h2 class="fade-in">Verder lezen of luisteren</h2>
-        <p class="fade-in">Voor wie dit onderwerp interessant vindt en zelf verder wil verkennen, zijn hier een paar podcasts en boeken. Ze zijn bedoeld als verdieping, niet als advies.</p>
-        
-        <div class="resources-section">
-            <h3 class="fade-in">🎧 Podcasts</h3>
-            <div class="resource-item slide-in-left">
-                <a href="https://bitcoinschool.nl/" target="_blank">Bitcoin School</a>
-                <p>Stap voor stap uitleg over wat bitcoin is, waarom het bestaat en hoe je er praktisch mee kunt leren werken. Zeer geschikt voor beginners.</p>
-            </div>
-            <div class="resource-item slide-in-left">
-                <a href="https://bitcoin.nl/podcast/beginnen-met-bitcoin" target="_blank">Beginnen met Bitcoin</a>
-                <p>Korte afleveringen over de basis van bitcoin, wallets en hoe je zelf kunt beginnen. Ideaal als je net start met het onderwerp.</p>
-            </div>
-        </div>
-
-        <div class="resources-section" style="margin-top:50px;">
-            <h3 class="fade-in">🎓 Cursussen</h3>
-            <div class="resource-item slide-in-left">
-                <a href="https://mijneerstebitcoin.school/" target="_blank">Mijn Eerste Bitcoin</a>
-                <p>Het officiële Bitcoin‑diploma & gratis lesmateriaal. Open‑source lesmateriaal om studenten, docenten, bedrijven en community's essentiële financiële kennis en begrip van Bitcoin te geven.</p>
-            </div>
-        </div>
-
-        <div class="resources-section" style="margin-top:50px;">
-            <h3 class="fade-in">📚 Boeken</h3>
-            <div class="resource-item slide-in-right">
-                <a href="https://bitcoinbrabant.com/product-categorie/learn/boeken/" target="_blank">De Bitcoin Standaard – Saifedean Ammous</a>
-                <p>Legt uit wat geld is, waarom schaarste belangrijk is en hoe bitcoin daarin past. Helpt begrijpen welk probleem bitcoin probeert op te lossen.</p>
-            </div>
-            <div class="resource-item slide-in-right">
-                <a href="https://www.bol.com/nl/nl/p/broken-money-why-our-financial-system-is-failing-us-and-how-we-can-make-it-better/9300000169833203/" target="_blank">Broken Money – Lyn Alden</a>
-                <p>Toegankelijke uitleg van hoe het huidige geldsysteem werkt en hoe bitcoin daarin kan passen. Geschikt voor sceptici die nuchter willen begrijpen.</p>
-            </div>
-            <div class="resource-item slide-in-right">
-                <a href="https://www.bol.com/nl/nl/f/layered-money/9300000023016504/" target="_blank">Layered Money – Nik Bhatia</a>
-                <p>Toont hoe geld in lagen werkt en hoe bitcoin zich verhoudt tot goud en bankgeld. Helpt het grotere plaatje te zien zonder technische details.</p>
-            </div>
-        </div>
+        <h2 class="fade-in">Verder leren over Bitcoin</h2>
+        <p class="fade-in">Wil je dieper duiken? We hebben podcasts, cursussen, boeken en meer verzameld.</p>
+        <p class="fade-in" style="margin-top:30px;"><a href="pages/resources.html" style="color:#f7931a;text-decoration:none;font-weight:600;font-size:1.2rem;">→ Bekijk alle leermateriaal en resources</a></p>
     </div>
 </section>
 
 <section>
     <div class="container">
-        <div class="section-number fade-in">12 — Support</div>
+        <div class="section-number fade-in">12 — Support & Contact</div>
         <h2 class="fade-in">Vond je dit nuttig?</h2>
         <p class="fade-in">Als je deze uitleg waardevol vond, kun je een kleine donatie in bitcoin (sats) sturen.</p>
         
         <div class="donation-box scale-in">
             <div class="qr-container">
-                <img src="qr_download.png" alt="Bitcoin Lightning QR-code">
+                <img src="assets/qr_download.png" alt="Bitcoin Lightning QR-code">
                 <p style="margin-top:10px;color:#666;font-size:0.9rem;">Scan de QR-code om te doneren</p>
             </div>
             <p class="lightning-address">⚡ l3and3r@getalby.com</p>
@@ -330,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="fade-in" style="margin-top:60px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.1);">
             <h3 style="color:#fff;margin-bottom:20px;">Contact</h3>
             <p style="font-size:1rem;color:#ccc;margin-bottom:15px;">Vragen of feedback? Bereik me op Nostr:</p>
-            <div style="display:inline-flex;align-items:center;gap:10px;padding:15px 25px;background:rgba(255,255,255,0.03);border-radius:12px;border:1px solid rgba(139,92,246,0.3);transition:all 0.3s ease;">
+            <div style="display:inline-flex;align-items:center;gap:10px;padding:15px 25px;background:rgba(255,255,255,0.03);border-radius:12px;border:1px solid rgba(139,92,246,0.3);">
                 <svg width="24" height="24" viewBox="0 0 875 875" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0H875V875H0V0Z" fill="url(#paint0_linear)"/>
                     <path d="M228.8 548.5L308.3 469C327.9 449.4 359.4 449.4 379 469L458.5 548.5M228.8 548.5L149.3 469C129.7 449.4 129.7 417.9 149.3 398.3L228.8 318.8M228.8 548.5L308.3 628C327.9 647.6 359.4 647.6 379 628L458.5 548.5M458.5 548.5L538 469C557.6 449.4 589.1 449.4 608.7 469L688.2 548.5M458.5 548.5L379 628C359.4 647.6 327.9 647.6 308.3 628L228.8 548.5M688.2 548.5L767.7 469C787.3 449.4 787.3 417.9 767.7 398.3L688.2 318.8M688.2 548.5L608.7 628C589.1 647.6 557.6 647.6 538 628L458.5 548.5M228.8 318.8L149.3 239.3C129.7 219.7 129.7 188.2 149.3 168.6L228.8 89.1C248.4 69.5 279.9 69.5 299.5 89.1L379 168.6M228.8 318.8L308.3 239.3C327.9 219.7 359.4 219.7 379 239.3L458.5 318.8M379 168.6C359.4 188.2 327.9 188.2 308.3 168.6M379 168.6L458.5 89.1C478.1 69.5 509.6 69.5 529.2 89.1L608.7 168.6M308.3 168.6L228.8 89.1M458.5 318.8L538 239.3C557.6 219.7 589.1 219.7 608.7 239.3L688.2 318.8M458.5 318.8L379 239.3M608.7 168.6C589.1 188.2 557.6 188.2 538 168.6M608.7 168.6L688.2 89.1C707.8 69.5 739.3 69.5 758.9 89.1L838.4 168.6C858 188.2 858 219.7 838.4 239.3L758.9 318.8C739.3 338.4 707.8 338.4 688.2 318.8M538 168.6L458.5 89.1M688.2 318.8L608.7 239.3" stroke="white" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
@@ -341,12 +291,4 @@ document.addEventListener('DOMContentLoaded', () => {
                         </linearGradient>
                     </defs>
                 </svg>
-                <code style="font-family:monospace;font-size:0.95rem;color:#8B5CF6;word-break:break-all;">npub152rm3l97pzc3pjmg8l33v6vcuf027s540tprzymtcv4rnxlqrecqkn6k8c</code>
-            </div>
-            <p style="font-size:0.85rem;color:#666;margin-top:10px;">Kopieer de public key om me te volgen of een bericht te sturen</p>
-        </div>
-    </div>
-</section>
-
-</body>
-</html>
+                <code style="font-family:monospace
