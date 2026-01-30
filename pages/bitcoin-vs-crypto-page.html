@@ -1,1 +1,414 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin vs Crypto - Het Cruciale Verschil | Bitcoin Uitgelegd</title>
+    <meta name="description" content="Waarom Bitcoin fundamenteel anders is dan andere cryptocurrency. Geen eigenaar, volledig gedecentraliseerd, absolute digitale schaarsheid.">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
 
+<!-- Navigation -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+            <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#f7931a"/>
+                <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
+            </svg>
+            <span>Bitcoin Uitgelegd</span>
+        </a>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="wat-is-geld.html">Wat is Geld?</a></li>
+            <li><a href="bitcoin-vs-crypto.html" class="active">BTC vs Crypto</a></li>
+            <li><a href="hoe-werkt-bitcoin.html">Hoe Werkt Het?</a></li>
+            <li><a href="zelf-beginnen.html">Zelf Beginnen</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <a href="../index.html">Home</a>
+    <span>›</span>
+    <span>Bitcoin vs Crypto</span>
+</div>
+
+<!-- JavaScript -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { 
+        if(entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold:0.1, rootMargin:'0px 0px -100px 0px' });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.fade-in,.slide-in-left,.slide-in-right,.scale-in').forEach(el => observer.observe(el));
+});
+
+function toggleMobileMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+
+window.addEventListener('scroll', () => {
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    }
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="section-number fade-in">Bitcoin ≠ Crypto</div>
+        <h1 class="fade-in">Is Bitcoin Niet Gewoon "Crypto"?</h1>
+        <p class="subtitle fade-in">Waarom dit onderscheid cruciaal is</p>
+    </div>
+</section>
+
+<!-- Sectie 1: De Verwarring -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">01 — De Verwarring</div>
+        <h2 class="fade-in">Waarom Alles "Crypto" Heet</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Leg uit waarom mensen Bitcoin en andere crypto's door elkaar halen -->
+        <p class="fade-in editable-content">
+            In de media en bij het grote publiek worden Bitcoin en "crypto" vaak als synoniemen gebruikt. Je hoort: "Heb je al crypto?", "Ik zit in crypto", of "Bitcoin is die ene crypto toch?"
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waarom ontstaat deze verwarring? (marketing, exchanges, media) -->
+        <p class="fade-in editable-content">
+            Deze verwarring is niet toevallig. Exchanges adverteren met "crypto" omdat het makkelijker te verkopen is. Media gebruiken het omdat het kort is. Marketing teams van andere projecten willen graag meeliften op de bekendheid van Bitcoin.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Wat denken mensen vs wat het werkelijk is -->
+        <p class="fade-in editable-content">
+            Veel mensen denken: "Het zijn allemaal digitale munten, dus wat maakt het uit?" Maar dat is alsof je zegt dat een stuk papier hetzelfde is als een bankbiljet omdat ze allebei van papier zijn. Het verschil zit hem niet in hoe ze eruitzien, maar in wat ze fundamenteel zijn.
+        </p>
+        
+        <p class="highlight scale-in">Bitcoin werd gemaakt als een experiment in digitaal geld zonder centrale autoriteit. De meeste andere "crypto's" zijn bedrijven die proberen een probleem op te lossen - of gewoon geld proberen te verdienen.</p>
+    </div>
+</section>
+
+<!-- Sectie 2: Geen Eigenaar -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">02 — Geen Eigenaar</div>
+        <h2 class="fade-in">Waarom Het Ontbreken Van Een Eigenaar Cruciaal Is</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Satoshi verdween in 2011 - waarom is dat belangrijk? -->
+        <p class="fade-in editable-content">
+            In 2008 publiceerde iemand onder de naam "Satoshi Nakamoto" het Bitcoin whitepaper. In 2011 verdween deze persoon volledig. Geen Twitter, geen interviews, geen updates. Spoorloos.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Wat betekent het dat niemand Bitcoin "bezit" of controleert? -->
+        <p class="fade-in editable-content">
+            Dit klinkt misschien als een probleem, maar het is juist de kracht van Bitcoin. Er is geen CEO die beslissingen neemt. Geen bedrijf dat de koers bepaalt. Geen oprichter die zijn "tokens" kan verkopen. Bitcoin draait op code die door duizenden mensen wereldwijd wordt gecontroleerd.
+        </p>
+        
+        <div class="comparison scale-in">
+            <p><strong>Vergelijk dit met andere projecten:</strong></p>
+            <ul style="text-align:left; list-style:disc; padding-left:20px;">
+                <li><strong>Ethereum</strong> - Opgericht door Vitalik Buterin (nog steeds actief)</li>
+                <li><strong>Cardano</strong> - Charles Hoskinson is het gezicht en leider</li>
+                <li><strong>Ripple (XRP)</strong> - Bedrijf Ripple Labs controleert grootste deel</li>
+                <li><strong>Solana</strong> - Opgericht door Anatoly Yakovenko en team</li>
+            </ul>
+        </div>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waarom is een leider/oprichter een risico? -->
+        <p class="fade-in editable-content">
+            Als er een leider is, kan die worden beïnvloed, gedwongen, omgekocht, of zelfs gearresteerd. Als er een bedrijf is, kan dat failliet gaan, verkocht worden, of gedagvaard worden. Bitcoin heeft deze zwakke schakel niet.
+        </p>
+        
+        <p class="highlight scale-in">Bitcoin is het enige digitale geld dat echt niemands eigendom is. Niet van een persoon, niet van een bedrijf, niet van een land. Het is van iedereen die de code draait.</p>
+    </div>
+</section>
+
+<!-- Sectie 3: Volledige Decentralisatie -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">03 — Volledige Decentralisatie</div>
+        <h2 class="fade-in">Wat Betekent "Echt Gedecentraliseerd"?</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Wat zijn nodes? (simpel uitgelegd) -->
+        <p class="fade-in editable-content">
+            Een "node" is simpelweg een computer die de Bitcoin software draait. Deze computer heeft een kopie van álle transacties die ooit zijn gedaan - het hele grootboek. Op dit moment draaien er meer dan 15.000 van dit soort computers over de hele wereld.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waarom duizenden nodes belangrijk zijn -->
+        <p class="fade-in editable-content">
+            Dit betekent dat er geen enkel kantoor is dat je kunt sluiten om Bitcoin stop te zetten. Geen enkele server die je uit kunt schakelen. Je zou letterlijk duizenden computers in honderden landen tegelijk moeten uitschakelen. En zelfs dan kan iedereen gewoon opnieuw beginnen met de code die open source is.
+        </p>
+        
+        <ul>
+            <li class="slide-in-left"><strong>Bitcoin:</strong> 15.000+ onafhankelijke nodes wereldwijd</li>
+            <li class="slide-in-left"><strong>Ethereum:</strong> ~7.000 nodes, maar veel via centrale providers</li>
+            <li class="slide-in-left"><strong>Solana:</strong> ~3.000 nodes, vereist dure servers</li>
+            <li class="slide-in-left"><strong>Ripple:</strong> ~150 validators, meeste door Ripple Labs</li>
+        </ul>
+        
+        <!-- ✏️ JOUW TEKST HIER: Verschil tussen "gedecentraliseerd" claimen en echt zijn -->
+        <p class="fade-in editable-content">
+            Veel crypto-projecten *zeggen* dat ze gedecentraliseerd zijn. Maar in de praktijk draaien hun netwerken op een handjevol krachtige servers, beheerd door een paar entiteiten. Bij Bitcoin kan letterlijk iedereen een node draaien op een oude laptop of zelfs een Raspberry Pi van €50.
+        </p>
+        
+        <p class="highlight scale-in">Echte decentralisatie betekent: niemand kan het stoppen, niemand kan het censureren, niemand kan de regels veranderen. Bij Bitcoin is dat realiteit, bij de meeste andere niet.</p>
+    </div>
+</section>
+
+<!-- Sectie 4: Absolute Digitale Schaarsheid -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">04 — Absolute Schaarsheid</div>
+        <h2 class="fade-in">21 Miljoen Bitcoin. Nooit Meer.</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Leg uit dat er maximaal 21 miljoen Bitcoin kunnen bestaan -->
+        <p class="fade-in editable-content">
+            In de code van Bitcoin staat een regel die zegt: er zullen nooit meer dan 21 miljoen bitcoins bestaan. Dit getal is hard gecodeerd. Het laatste stukje Bitcoin wordt rond het jaar 2140 gemined.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waarom kan dit niet veranderd worden? -->
+        <p class="fade-in editable-content">
+            "Maar kan dat getal niet gewoon veranderd worden?" Technisch gezien wel - het is software. Maar daarvoor zouden alle duizenden nodes tegelijk moeten besluiten de code aan te passen. En waarom zouden ze? Het zou hun eigen bitcoin minder schaars maken. Het is economisch irrationeel.
+        </p>
+        
+        <div class="comparison scale-in">
+            <p><strong>Supply vergelijking:</strong></p>
+            <ul style="text-align:left; list-style:none; padding-left:0;">
+                <li>💎 <strong>Bitcoin:</strong> 21 miljoen maximum (hard gecodeerd, niet te veranderen)</li>
+                <li>♾️ <strong>Ethereum:</strong> Geen maximum, ~120 miljoen nu (was ooit gelimiteerd)</li>
+                <li>📊 <strong>Cardano:</strong> 45 miljard maximum (kan aangepast worden door stemming)</li>
+                <li>🏦 <strong>Ripple:</strong> 100 miljard (grootste deel bij bedrijf)</li>
+            </ul>
+        </div>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waarom hebben andere crypto's geen vaste supply? -->
+        <p class="fade-in editable-content">
+            De meeste andere crypto-projecten hebben bewust geen vaste supply gekozen. Ze willen flexibiliteit om "incentives aan te passen", "staking te belonen", of "het netwerk te financieren". Dat klinkt praktisch, maar het betekent ook dat de regels kunnen veranderen.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Voorbeeld van supply change (Ethereum merge) -->
+        <p class="fade-in editable-content">
+            Ethereum is bijvoorbeeld overgegaan van "limited supply" naar "geen maximum" na "The Merge". Dit was een technische upgrade, maar het veranderde ook fundamenteel de economie van het netwerk. Bij Bitcoin kan dit niet gebeuren zonder consensus van iedereen.
+        </p>
+        
+        <p class="highlight scale-in">Bitcoin is het eerste en enige digitale goed waarvan de schaarste mathematisch gegarandeerd is en niet veranderd kan worden. Dat maakt het uniek in de geschiedenis van geld.</p>
+    </div>
+</section>
+
+<!-- Sectie 5: Vergelijkingstabel -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">05 — Directe Vergelijking</div>
+        <h2 class="fade-in">Bitcoin vs Andere Crypto's</h2>
+        <p class="fade-in">Een eerlijke vergelijking op de punten die ertoe doen:</p>
+        
+        <!-- Vergelijkingstabel - kant-en-klaar -->
+        <div style="overflow-x:auto; margin:40px 0;">
+            <table style="width:100%; border-collapse:collapse; background:rgba(255,255,255,0.02); border-radius:10px;">
+                <thead>
+                    <tr style="border-bottom:2px solid #f7931a;">
+                        <th style="padding:20px; text-align:left; color:#f7931a;">Eigenschap</th>
+                        <th style="padding:20px; text-align:center; color:#f7931a;">Bitcoin</th>
+                        <th style="padding:20px; text-align:center; color:#999;">Ethereum</th>
+                        <th style="padding:20px; text-align:center; color:#999;">Ripple</th>
+                        <th style="padding:20px; text-align:center; color:#999;">Solana</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                        <td style="padding:15px; color:#ccc;">Oprichter verdwenen?</td>
+                        <td style="padding:15px; text-align:center; color:#0f0; font-size:1.5rem;">✅</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">❌</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">❌</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">❌</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                        <td style="padding:15px; color:#ccc;">Echt gedecentraliseerd?</td>
+                        <td style="padding:15px; text-align:center; color:#0f0; font-size:1.5rem;">✅</td>
+                        <td style="padding:15px; text-align:center; color:#ff0; font-size:1.5rem;">⚠️</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">❌</td>
+                        <td style="padding:15px; text-align:center; color:#ff0; font-size:1.5rem;">⚠️</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                        <td style="padding:15px; color:#ccc;">Vaste max supply?</td>
+                        <td style="padding:15px; text-align:center; color:#0f0; font-size:1.5rem;">✅</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">❌</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">❌</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">❌</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                        <td style="padding:15px; color:#ccc;">Kan gestopt worden?</td>
+                        <td style="padding:15px; text-align:center; color:#0f0; font-size:1.5rem;">❌</td>
+                        <td style="padding:15px; text-align:center; color:#ff0; font-size:1.5rem;">⚠️</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">✅</td>
+                        <td style="padding:15px; text-align:center; color:#ff0; font-size:1.5rem;">⚠️</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:15px; color:#ccc;">Node draaien voor iedereen?</td>
+                        <td style="padding:15px; text-align:center; color:#0f0; font-size:1.5rem;">✅</td>
+                        <td style="padding:15px; text-align:center; color:#ff0; font-size:1.5rem;">⚠️</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">❌</td>
+                        <td style="padding:15px; text-align:center; color:#f00; font-size:1.5rem;">❌</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p style="font-size:0.9rem; color:#666; margin-top:20px;">
+            ✅ = Ja | ❌ = Nee | ⚠️ = Gedeeltelijk/Complex
+        </p>
+    </div>
+</section>
+
+<!-- Sectie 6: Waarom Dit Uitmaakt -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">06 — Waarom Dit Uitmaakt</div>
+        <h2 class="fade-in">Het Verschil Voor Jou</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Vertrouwen in code vs vertrouwen in mensen -->
+        <p class="fade-in editable-content">
+            Als je geld wilt dat niet afhankelijk is van vertrouwen in een persoon of bedrijf, dan maakt dit verschil alles uit. Bitcoin vraagt je om de code te vertrouwen - code die door iedereen te controleren is. Andere crypto's vragen je om de oprichter, het team, of het bedrijf te vertrouwen.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Lange termijn voorspelbaarheid -->
+        <p class="fade-in editable-content">
+            Op korte termijn maakt het misschien niet uit. Ethereum werkt prima, Solana is snel, Ripple heeft goede partnerships. Maar over 10, 20, 50 jaar? Wat gebeurt er als de oprichters verkopen? Als het bedrijf failliet gaat? Als de regels veranderen?
+        </p>
+        
+        <div class="comparison scale-in">
+            <p><strong>Bij Bitcoin weet je:</strong></p>
+            <ul style="text-align:left; list-style:none; padding-left:0; margin-top:15px;">
+                <li>✓ Er komen nooit meer dan 21 miljoen</li>
+                <li>✓ De regels veranderen niet zonder brede consensus</li>
+                <li>✓ Niemand kan het uitschakelen</li>
+                <li>✓ Je hebt geen toestemming nodig om mee te doen</li>
+            </ul>
+        </div>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waarom alleen Bitcoin "hard geld" kan zijn -->
+        <p class="fade-in editable-content">
+            Dit is waarom mensen zeggen dat alleen Bitcoin "hard money" kan zijn. Niet omdat andere crypto's slecht zijn - velen doen interessante dingen. Maar omdat Bitcoin het enige is dat *fundamenteel* onafhankelijk is van menselijke beslissingen.
+        </p>
+        
+        <p class="highlight scale-in">Andere crypto's zijn experimenten, platforms, bedrijven. Bitcoin is een protocol, zoals het internet zelf. Het bestaat gewoon, draait door, ongeacht wat er gebeurt.</p>
+    </div>
+</section>
+
+<!-- Sectie 7: Nuance -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">07 — Belangrijke Nuance</div>
+        <h2 class="fade-in">Wat Deze Vergelijking Niet Zegt</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Andere crypto's zijn niet "slecht" of "scams" -->
+        <p class="fade-in editable-content">
+            Deze vergelijking betekent niet dat andere crypto's waardeloos zijn of oplichting. Ethereum heeft smart contracts mogelijk gemaakt. Solana is extreem snel. Cardano heeft interessante governance. Ze hebben allemaal hun eigen doelen en toepassingen.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Het gaat om verschillende doelen -->
+        <p class="fade-in editable-content">
+            Het punt is: ze proberen andere dingen op te lossen dan Bitcoin. Ethereum wil een "wereldcomputer" zijn. Ripple wil internationale betalingen versnellen. Solana wil hoge doorvoer bieden. Dit zijn legitieme doelen, maar het zijn geen pogingen om "digitaal goud" of "hard geld" te zijn.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Bitcoin heeft ook beperkingen -->
+        <p class="fade-in editable-content">
+            Bitcoin is ook niet perfect. Het is langzaam vergeleken met nieuwere systemen. Het kan geen complexe smart contracts draaien. Het energieverbruik is hoog. Deze trade-offs zijn bewust gemaakt voor decentralisatie en veiligheid, maar het zijn wel beperkingen.
+        </p>
+        
+        <p class="highlight scale-in">De vraag is niet "welke is beter?", maar "wat probeer je te bereiken?" Als je digitaal geld wilt dat echt niemands eigendom is, is Bitcoin de enige optie. Voor andere doeleinden kunnen andere oplossingen beter passen.</p>
+    </div>
+</section>
+
+<!-- Sectie 8: Conclusie -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">08 — Samenvatting</div>
+        <h2 class="fade-in">Bitcoin Is Het Experiment</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Samenvatting van de kernpunten -->
+        <p class="fade-in editable-content">
+            Bitcoin is een uniek experiment: kan digitaal geld bestaan zonder een centrale autoriteit? Zonder een oprichter die beslissingen neemt? Met absolute schaarste die niet aangepast kan worden? Het antwoord tot nu toe is: ja, het kan.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: De rest zijn bedrijven/projecten met andere doelen -->
+        <p class="fade-in editable-content">
+            De meeste andere crypto's zijn waardevolle projecten, maar ze zijn fundamenteel anders. Ze hebben teams, roadmaps, governance, upgrades. Ze evolueren, experimenteren, passen zich aan. Dat maakt ze flexibel, maar ook afhankelijk van mensen.
+        </p>
+        
+        <div class="bitcoin-symbol scale-in">
+            <svg width="80" height="80" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#f7931a"/>
+                <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
+            </svg>
+        </div>
+        
+        <!-- ✏️ JOUW TEKST HIER: Eindconclusie -->
+        <p class="final-message fade-in">
+            Begrijp je nu waarom mensen het onderscheid maken tussen "Bitcoin" en "crypto"? Het gaat niet om tribalisme of arrogantie. Het gaat om een fundamenteel verschil in wat deze technologieën proberen te zijn.
+        </p>
+    </div>
+</section>
+
+<!-- Related Pages -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="related-pages">
+            <h3>Gerelateerde Pagina's</h3>
+            <div class="related-grid">
+                <a href="hoe-werkt-bitcoin.html" class="related-card">
+                    <h4>→ Hoe Werkt Bitcoin?</h4>
+                    <p>Nu je begrijpt waarom Bitcoin anders is, leer hoe het technisch werkt zonder jargon.</p>
+                </a>
+                <a href="wat-is-geld.html" class="related-card">
+                    <h4>← Wat Is Geld?</h4>
+                    <p>Verdiep je in waarom geld überhaupt waarde verliest en hoe ons systeem werkt.</p>
+                </a>
+                <a href="../index.html#section-07" class="related-card">
+                    <h4>↑ Terug Naar Overzicht</h4>
+                    <p>Ga terug naar de hoofdpagina voor het complete verhaal.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="wat-is-geld.html">Wat is Geld?</a>
+        <a href="bitcoin-vs-crypto.html">BTC vs Crypto</a>
+        <a href="hoe-werkt-bitcoin.html">Hoe Werkt Het?</a>
+        <a href="zelf-beginnen.html">Zelf Beginnen</a>
+        <a href="resources.html">Resources</a>
+    </div>
+    <p class="footer-note">
+        Gemaakt met ₿ en ☕ | Geen financieel advies | Open source onder MIT licentie
+    </p>
+</footer>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+</body>
+</html>
