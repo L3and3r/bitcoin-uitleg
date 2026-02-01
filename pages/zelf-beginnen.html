@@ -1,1 +1,368 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zelf Beginnen met Bitcoin - Stap voor Stap | Bitcoin Uitgelegd</title>
+    <meta name="description" content="Praktische handleiding om zelf te beginnen met Bitcoin. Van wallet kiezen tot veilig bewaren in 5 simpele stappen.">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
 
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+            <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#f7931a"/>
+                <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
+            </svg>
+            <span>Bitcoin Uitgelegd</span>
+        </a>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="wat-is-geld.html">Wat is Geld?</a></li>
+            <li><a href="bitcoin-vs-crypto.html">BTC vs Crypto</a></li>
+            <li><a href="hoe-werkt-bitcoin.html">Hoe Werkt Het?</a></li>
+            <li><a href="zelf-beginnen.html" class="active">Zelf Beginnen</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="breadcrumbs">
+    <a href="../index.html">Home</a>
+    <span>›</span>
+    <span>Zelf Beginnen</span>
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { 
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold:0.1, rootMargin:'0px 0px -100px 0px' });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.fade-in,.slide-in-left,.slide-in-right,.scale-in').forEach(el => observer.observe(el));
+});
+
+function toggleMobileMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('scroll', () => {
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        backToTop.classList.toggle('visible', window.pageYOffset > 300);
+    }
+});
+</script>
+
+<section class="hero">
+    <div class="container">
+        <div class="section-number fade-in">Praktisch Aan De Slag</div>
+        <h1 class="fade-in">Zelf Beginnen met Bitcoin</h1>
+        <p class="subtitle fade-in">Van nieuwsgierig naar eigenaar in 5 stappen</p>
+    </div>
+</section>
+
+<!-- Voordat je begint -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">00 — Vooraf</div>
+        <h2 class="fade-in">Voordat Je Begint</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waarschuwingen en mindset voor beginners -->
+        <p class="fade-in editable-content">
+            Bitcoin is geen snelweg naar rijkdom. Het is een experiment in digitaal geld. Begin klein, neem je tijd, en zie het als leren, niet als investeren.
+        </p>
+        
+        <ul style="max-width:600px; margin:40px auto;">
+            <li class="slide-in-left"><strong>Start klein</strong> — Test met €20-50, niet met je spaa rgeld</li>
+            <li class="slide-in-left"><strong>Dit is geen advies</strong> — Jij bent verantwoordelijk voor je eigen keuzes</li>
+            <li class="slide-in-left"><strong>Neem de tijd</strong> — Haast is je vijand bij Bitcoin</li>
+        </ul>
+        
+        <p class="highlight scale-in">
+            Deze handleiding is bedoeld om je te helpen leren. Geen enkele stap is verplicht. Stop wanneer je wilt.
+        </p>
+    </div>
+</section>
+
+<!-- Stap 1: Wallet -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">Stap 1</div>
+        <h2 class="fade-in">Kies Een Wallet</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Wat is een wallet? -->
+        <p class="fade-in editable-content">
+            Een "wallet" is software die je Bitcoin private keys beheert. Denk aan het als een sleutelbos voor je digitale geld. Er zijn verschillende soorten...
+        </p>
+        
+        <div class="properties">
+            <div class="property-card scale-in">
+                <span class="icon">📱</span>
+                <h3>Mobile Wallets</h3>
+                <!-- ✏️ JOUW TEKST HIER: Aanbevelingen voor mobile wallets -->
+                <p class="editable-content">BlueWallet, Muun, Phoenix - Voor dagelijks gebruik op je telefoon. Makkelijk en snel.</p>
+            </div>
+            <div class="property-card scale-in">
+                <span class="icon">💻</span>
+                <h3>Desktop Wallets</h3>
+                <!-- ✏️ JOUW TEKST HIER: Desktop wallet aanbevelingen -->
+                <p class="editable-content">Sparrow Wallet - Meer controle, iets technischer. Voor als je serieus wordt.</p>
+            </div>
+            <div class="property-card scale-in">
+                <span class="icon">🔒</span>
+                <h3>Hardware Wallets</h3>
+                <!-- ✏️ JOUW TEKST HIER: Hardware wallets voor later -->
+                <p class="editable-content">Coldcard, BitBox, Seedsigner - Voor grotere bedragen. Aanschaffen als je meer bezit.</p>
+            </div>
+        </div>
+        
+        <p class="highlight scale-in">
+            ⚠️ Download ALLEEN van officiële websites. Nooit via Google ads of random links.
+        </p>
+    </div>
+</section>
+
+<!-- Stap 2: Seed Phrase -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">Stap 2</div>
+        <h2 class="fade-in">Noteer Je Seed Phrase</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Wat is een seed phrase en waarom is het HET belangrijkste? -->
+        <p class="fade-in editable-content">
+            Wanneer je een wallet aanmaakt, krijg je 12 of 24 willekeurige woorden. Dit is je "seed phrase" of "recovery phrase". Deze woorden zijn letterlijk je Bitcoin. Wie deze woorden heeft, bezit je Bitcoin.
+        </p>
+        
+        <div class="comparison scale-in">
+            <p><strong>De Gouden Regel:</strong></p>
+            <ul style="text-align:left; list-style:none; padding-left:20px;">
+                <li>✅ Schrijf op papier (of stamp in metaal)</li>
+                <li>✅ Bewaar op meerdere veilige plekken</li>
+                <li>✅ Vertel niemand je woorden</li>
+                <li>❌ Nooit digitaal opslaan (geen foto, geen cloud!)</li>
+                <li>❌ Nooit delen, ook niet met "support"</li>
+            </ul>
+        </div>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waarom zo streng? Voorbeelden van fouten -->
+        <p class="fade-in editable-content">
+            Er zijn verhalen van mensen die hun seed phrase "even snel" fotografeerden en hun telefoon gehackt werd. Of die het in een notitie app zetten en hun cloud account werd overgenomen. Papier is veiliger dan je denkt.
+        </p>
+        
+        <p class="highlight scale-in">
+            Verlies je telefoon? Geen probleem. Verlies je seed phrase? Je Bitcoin is weg. Voor altijd.
+        </p>
+    </div>
+</section>
+
+<!-- Stap 3: Kopen -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">Stap 3</div>
+        <h2 class="fade-in">Koop Je Eerste Sats</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waar kun je in Nederland Bitcoin kopen? -->
+        <p class="fade-in editable-content">
+            In Nederland zijn er verschillende betrouwbare plekken om Bitcoin te kopen. Je hoeft geen hele Bitcoin te kopen - beginnen met €20 kan al.
+        </p>
+        
+        <div class="resources-section">
+            <!-- ✏️ JOUW TEKST HIER: Bitcoin-only exchanges met uitleg -->
+            <div class="resource-item slide-in-left editable-content">
+                <strong>Bitonic</strong>
+                <p>Oudste Nederlandse Bitcoin broker. Bitcoin-only, iDEAL, simpel, direct naar je eigen wallet. Ideaal voor beginners.</p>
+            </div>
+            <div class="resource-item slide-in-left editable-content">
+                <strong>Strike</strong>
+                <p>Bitcoin-only app met Lightning support. Makkelijk in gebruik, lage fees, geen shitcoins. Beschikbaar in Europa.</p>
+            </div>
+            <div class="resource-item slide-in-left editable-content">
+                <strong>Relai</strong>
+                <p>Zwitserse Bitcoin-only broker. Automatisch sparen mogelijk, geen account nodig voor kleine bedragen.</p>
+            </div>
+        </div>
+        
+        <!-- ✏️ JOUW TEKST HIER: KYC uitleg -->
+        <p class="fade-in editable-content">
+            Let op: de meeste exchanges vragen om identificatie (KYC - Know Your Customer). Dat is vaak verplicht door wet- en regelgeving. Bereid je voor op ID upload en verificatie. Strike en Relai hebben voor kleine bedragen minder strikte KYC.
+        </p>
+        
+        <p class="highlight scale-in">
+            Pro tip: Begin met een klein "test" bedrag. Koop €20, stuur het naar je wallet, check of het aankomt. Dan pas grotere bedragen.
+        </p>
+    </div>
+</section>
+
+<!-- Stap 4: Withdrawen -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">Stap 4</div>
+        <h2 class="fade-in">Verstuur Naar Je Eigen Wallet</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Waarom withdrawen naar eigen wallet cruciaal is -->
+        <p class="fade-in editable-content">
+            "Not your keys, not your coins" - als je Bitcoin op een exchange laat staan, is het niet echt van jou. De exchange kan failliet gaan, gehackt worden, of bevroren worden. Withdraw naar je eigen wallet.
+        </p>
+        
+        <ul style="max-width:600px; margin:40px auto;">
+            <li class="slide-in-right"><strong>Kopieer je wallet adres</strong> — Check dubbel dat het klopt</li>
+            <li class="slide-in-right"><strong>Plak in de exchange</strong> — Gebruik ALTIJD copy-paste, nooit typen</li>
+            <li class="slide-in-right"><strong>Start met klein bedrag</strong> — Test eerst met €5-10</li>
+            <li class="slide-in-right"><strong>Begrijp fees</strong> — Je betaalt een kleine fee voor de transactie</li>
+        </ul>
+        
+        <!-- ✏️ JOUW TEKST HIER: Hoe lang duurt een transactie? -->
+        <p class="fade-in editable-content">
+            Een Bitcoin transactie kan 10 minuten tot een paar uur duren, afhankelijk van de drukte op het netwerk en de fee die je betaalt. Wees geduldig.
+        </p>
+        
+        <p class="highlight scale-in">
+            Check je adres 3x voordat je op "verstuur" klikt. Een verkeerd adres betekent: weg Bitcoin, geen terugdraai-knop.
+        </p>
+    </div>
+</section>
+
+<!-- Stap 5: Veilig Bewaren -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">Stap 5</div>
+        <h2 class="fade-in">Bewaar Het Veilig</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Backup checklist en veiligheidstips -->
+        <p class="fade-in editable-content">
+            Je hebt nu Bitcoin in je eigen wallet. Goed gedaan! Nu is het zaak om het veilig te houden.
+        </p>
+        
+        <div class="comparison scale-in">
+            <p><strong>Backup Checklist:</strong></p>
+            <ul style="text-align:left; list-style:none; padding-left:20px;">
+                <li>✅ Seed phrase op papier op 2+ plekken</li>
+                <li>✅ Geen toegang voor anderen tot deze plekken</li>
+                <li>✅ Wallet app blijft geüpdatet</li>
+                <li>✅ Je weet hoe je kunt recoveren bij telefoon verlies</li>
+            </ul>
+        </div>
+        
+        <!-- ✏️ JOUW TEKST HIER: Wat te doen bij verlies telefoon -->
+        <p class="fade-in editable-content">
+            Als je je telefoon verliest: geen paniek. Download je wallet app opnieuw op een nieuw toestel, vul je seed phrase in, en je Bitcoin is terug. Daarom is die seed phrase zo belangrijk.
+        </p>
+        
+        <!-- ✏️ JOUW TEKST HIER: Voor grotere bedragen: hardware wallet overwegen -->
+        <p class="fade-in editable-content">
+            Als je bedrag groeit (boven €500-1000), overweeg dan een hardware wallet. Die kost €50-150 maar geeft een extra beveiligingslaag.
+        </p>
+    </div>
+</section>
+
+<!-- Veelgemaakte Fouten -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">Fouten Vermijden</div>
+        <h2 class="fade-in">⚠️ Veelgemaakte Fouten</h2>
+        
+        <ul style="max-width:700px; margin:40px auto;">
+            <!-- ✏️ JOUW TEKST HIER: Top fouten die beginners maken -->
+            <li class="slide-in-left editable-content">
+                <strong>Seed phrase delen met "support"</strong> — Geen enkele echte support vraagt dit. Het is 100% scam.
+            </li>
+            <li class="slide-in-left editable-content">
+                <strong>Alles op exchange laten</strong> — "Not your keys, not your coins". Withdraw naar eigen wallet.
+            </li>
+            <li class="slide-in-left editable-content">
+                <strong>Paniek verkopen</strong> — Prijs daalt 20%? Normaal bij Bitcoin. Niet in paniek verkopen.
+            </li>
+            <li class="slide-in-left editable-content">
+                <strong>Te veel te snel</strong> — Begin klein. Leer. Dan pas meer.
+            </li>
+        </ul>
+        
+        <p class="highlight scale-in">
+            De grootste fout? Niet leren. Neem de tijd om te begrijpen wat je doet. Bitcoin beloont geduld en kennis.
+        </p>
+    </div>
+</section>
+
+<!-- Volgende Stappen -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">Volgende Stappen</div>
+        <h2 class="fade-in">En Nu?</h2>
+        
+        <!-- ✏️ JOUW TEKST HIER: Wat kunnen mensen doen na deze stappen? -->
+        <p class="fade-in editable-content">
+            Je hebt nu de basis onder de knie. Maar dit is pas het begin van de rabbit hole...
+        </p>
+        
+        <div class="properties">
+            <div class="property-card scale-in">
+                <span class="icon">🎓</span>
+                <h3>Blijf Leren</h3>
+                <p>Check de <a href="resources.html" style="color:#f7931a;">resources pagina</a> voor podcasts, boeken en cursussen.</p>
+            </div>
+            <div class="property-card scale-in">
+                <span class="icon">👥</span>
+                <h3>Join Community</h3>
+                <p>Zoek lokale Bitcoin meetups. Leer van anderen. Stel vragen.</p>
+            </div>
+            <div class="property-card scale-in">
+                <span class="icon">🔧</span>
+                <h3>Level Up</h3>
+                <p>Eigen node draaien, Lightning Network verkennen, multi-sig leren.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Pages -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="related-pages">
+            <h3>Meer Lezen</h3>
+            <div class="related-grid">
+                <a href="resources.html" class="related-card">
+                    <h4>→ Resources</h4>
+                    <p>Wil je meer leren? Bekijk alle podcasts, boeken en cursussen.</p>
+                </a>
+                <a href="hoe-werkt-bitcoin.html" class="related-card">
+                    <h4>← Hoe Werkt Het?</h4>
+                    <p>Begrijp de techniek achter Bitcoin zonder jargon.</p>
+                </a>
+                <a href="../index.html" class="related-card">
+                    <h4>↑ Home</h4>
+                    <p>Terug naar het overzicht.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="wat-is-geld.html">Wat is Geld?</a>
+        <a href="bitcoin-vs-crypto.html">BTC vs Crypto</a>
+        <a href="hoe-werkt-bitcoin.html">Hoe Werkt Het?</a>
+        <a href="zelf-beginnen.html">Zelf Beginnen</a>
+        <a href="resources.html">Resources</a>
+    </div>
+    <p class="footer-note">
+        Gemaakt met ₿ en ☕ | Geen financieel advies | Open source onder MIT licentie
+    </p>
+</footer>
+
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+</body>
+</html>
