@@ -1,1 +1,320 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Resources - Leer Meer | Bitcoin Uitgelegd</title>
+    <meta name="description" content="Uitgebreide collectie van Nederlandse en Engelstalige Bitcoin resources: podcasts, cursussen, boeken, video's en communities.">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
 
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+            <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="32" fill="#f7931a"/>
+                <path d="M46.1 27.4c.6-4.2-2.5-6.4-6.8-7.9l1.4-5.6-3.4-.8-1.4 5.4c-.9-.2-1.8-.4-2.7-.6l1.4-5.5-3.4-.8-1.4 5.6c-.7-.2-1.5-.3-2.2-.5l-4.7-1.2-.9 3.6s2.5.6 2.5.6c1.4.3 1.6 1.2 1.6 1.9l-1.6 6.3c.1 0 .2.1.3.1-.1 0-.2 0-.3-.1l-2.2 8.9c-.2.4-.6 1.1-1.5.8 0 0-2.5-.6-2.5-.6l-1.7 3.9 4.4 1.1c.8.2 1.6.4 2.4.6l-1.4 5.7 3.4.8 1.4-5.6c.9.2 1.8.5 2.7.7l-1.4 5.5 3.4.8 1.4-5.7c5.9 1.1 10.3.7 12.2-4.7 1.5-4.4-.1-6.9-3.2-8.5 2.3-.6 4-2.1 4.5-5.4zm-8 11.3c-1.1 4.3-8.2 2-10.5 1.4l1.9-7.5c2.3.6 9.7 1.7 8.6 6.1zm1.1-11.4c-.9 3.9-6.7 1.9-8.6 1.4l1.7-6.8c1.9.5 8 1.4 6.9 5.4z" fill="#fff"/>
+            </svg>
+            <span>Bitcoin Uitgelegd</span>
+        </a>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="wat-is-geld.html">Wat is Geld?</a></li>
+            <li><a href="bitcoin-vs-crypto.html">BTC vs Crypto</a></li>
+            <li><a href="hoe-werkt-bitcoin.html">Hoe Werkt Het?</a></li>
+            <li><a href="zelf-beginnen.html">Zelf Beginnen</a></li>
+            <li><a href="resources.html" class="active">Resources</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="breadcrumbs">
+    <a href="../index.html">Home</a>
+    <span>›</span>
+    <span>Resources</span>
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { 
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold:0.1, rootMargin:'0px 0px -100px 0px' });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.fade-in,.slide-in-left,.slide-in-right,.scale-in').forEach(el => observer.observe(el));
+});
+
+function toggleMobileMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+}
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('scroll', () => {
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        backToTop.classList.add(window.pageYOffset > 300 ? 'visible' : '');
+        backToTop.classList.remove(window.pageYOffset <= 300 ? 'visible' : '');
+    }
+});
+</script>
+
+<section class="hero">
+    <div class="container">
+        <div class="section-number fade-in">Leermateriaal</div>
+        <h1 class="fade-in">Bitcoin Resources</h1>
+        <p class="subtitle fade-in">Van beginner tot expert - alles wat je nodig hebt om meer te leren</p>
+    </div>
+</section>
+
+<!-- Podcasts -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">01 — Audio</div>
+        <h2 class="fade-in">🎧 Podcasts</h2>
+        <p class="fade-in">Luister onderweg, tijdens het sporten, of gewoon thuis op de bank.</p>
+        
+        <div class="resources-section">
+            <div class="resource-item slide-in-left">
+                <a href="https://bitcoinschool.nl/" target="_blank">Bitcoin School</a>
+                <p>Stap voor stap uitleg over wat bitcoin is, waarom het bestaat en hoe je er praktisch mee kunt leren werken. Zeer geschikt voor beginners.</p>
+                <!-- ✏️ JOUW TEKST HIER: Voeg top 3-5 afleveringen toe om mee te starten -->
+                <p style="font-size:0.95rem; color:#666; margin-top:10px;">
+                    <strong>Start met:</strong> Aflevering 1 - "Wat is Bitcoin?"
+                </p>
+            </div>
+            
+            <div class="resource-item slide-in-left">
+                <a href="https://bitcoin.nl/podcast/beginnen-met-bitcoin" target="_blank">Beginnen met Bitcoin</a>
+                <p>Korte afleveringen over de basis van bitcoin, wallets en hoe je zelf kunt beginnen. Ideaal als je net start met het onderwerp.</p>
+                <!-- ✏️ JOUW TEKST HIER: Waarom is deze goed voor beginners? -->
+            </div>
+            
+            <!-- ✏️ JOUW TEKST HIER: Voeg meer Nederlandse podcasts toe -->
+            <div class="resource-item slide-in-left editable-content">
+                <a href="#" target="_blank">Nog toe te voegen</a>
+                <p>Beschrijving van andere Nederlandse Bitcoin podcasts...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cursussen -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">02 — Cursussen</div>
+        <h2 class="fade-in">🎓 Cursussen & Diploma's</h2>
+        <p class="fade-in">Gestructureerd leren met certificaten en begeleiding.</p>
+        
+        <div class="resources-section">
+            <div class="resource-item slide-in-right">
+                <a href="https://mijneerstebitcoin.school/" target="_blank">Mijn Eerste Bitcoin</a>
+                <p>Het officiële Bitcoin‑diploma & gratis lesmateriaal. Open‑source lesmateriaal om studenten, docenten, bedrijven en community's essentiële financiële kennis en begrip van Bitcoin te geven.</p>
+                <!-- ✏️ JOUW TEKST HIER: Wat leer je precies? Hoe lang duurt het? Wat is de waarde van het diploma? -->
+                <p style="font-size:0.95rem; color:#666; margin-top:10px;">
+                    <strong>Geschikt voor:</strong> Complete beginners die gestructureerd willen leren
+                </p>
+            </div>
+            
+            <!-- ✏️ JOUW TEKST HIER: Voeg Saylor Academy en andere cursussen toe -->
+            <div class="resource-item slide-in-right editable-content">
+                <a href="https://learn.saylor.org/course/view.php?id=468" target="_blank">Saylor Academy - Bitcoin</a>
+                <p>Gratis Engelstalige cursus over Bitcoin. Beschrijving toevoegen...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Boeken -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">03 — Boeken</div>
+        <h2 class="fade-in">📚 Boeken</h2>
+        <p class="fade-in">Verdieping voor als je echt wilt begrijpen hoe het zit.</p>
+        
+        <div class="resources-section">
+            <h3 class="fade-in" style="color:#f7931a; margin-top:30px;">Nederlands</h3>
+            
+            <div class="resource-item slide-in-left">
+                <a href="https://bitcoinbrabant.com/product-categorie/learn/boeken/" target="_blank">De Bitcoin Standaard – Saifedean Ammous</a>
+                <p>Legt uit wat geld is, waarom schaarste belangrijk is en hoe bitcoin daarin past. Helpt begrijpen welk probleem bitcoin probeert op te lossen.</p>
+                <!-- ✏️ JOUW TEKST HIER: Voor wie is dit boek? Wat maakt het goed? Moeilijkheidsgraad? -->
+                <p style="font-size:0.95rem; color:#666; margin-top:10px;">
+                    <strong>Lees dit als:</strong> Je wilt begrijpen waarom schaarste belangrijk is voor geld
+                </p>
+            </div>
+            
+            <div class="resource-item slide-in-left">
+                <a href="https://www.bol.com/nl/nl/p/broken-money-why-our-financial-system-is-failing-us-and-how-we-can-make-it-better/9300000169833203/" target="_blank">Broken Money – Lyn Alden</a>
+                <p>Toegankelijke uitleg van hoe het huidige geldsysteem werkt en hoe bitcoin daarin kan passen. Geschikt voor sceptici die nuchter willen begrijpen.</p>
+                <!-- ✏️ JOUW TEKST HIER: Waarom is dit goed voor sceptici? -->
+            </div>
+            
+            <div class="resource-item slide-in-left">
+                <a href="https://www.bol.com/nl/nl/f/layered-money/9300000023016504/" target="_blank">Layered Money – Nik Bhatia</a>
+                <p>Toont hoe geld in lagen werkt en hoe bitcoin zich verhoudt tot goud en bankgeld. Helpt het grotere plaatje te zien zonder technische details.</p>
+                <!-- ✏️ JOUW TEKST HIER: Voor wie is dit boek geschikt? -->
+            </div>
+            
+            <!-- ✏️ JOUW TEKST HIER: Voeg Engelstalige boeken toe -->
+            <h3 class="fade-in" style="color:#f7931a; margin-top:50px;">Engels</h3>
+            <div class="resource-item slide-in-left editable-content">
+                <a href="#" target="_blank">The Price of Tomorrow – Jeff Booth</a>
+                <p>Beschrijving toevoegen over deflatie en technologie...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Video's -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">04 — Video's</div>
+        <h2 class="fade-in">🎥 Video's & Documentaires</h2>
+        <p class="fade-in">Visueel leren werkt vaak het beste.</p>
+        
+        <div class="resources-section">
+            <div class="resource-item slide-in-right">
+                <a href="https://youtu.be/YtFOxNbmD38" target="_blank">What's the problem?</a>
+                <p>Korte, heldere uitleg van het probleem dat Bitcoin probeert op te lossen. Perfect als introductie.</p>
+                <div class="video-container scale-in" style="max-width:600px; margin:20px 0;">
+                    <iframe src="https://www.youtube.com/embed/YtFOxNbmD38" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                </div>
+            </div>
+            
+            <!-- ✏️ JOUW TEKST HIER: Voeg meer video's toe (Bitcoin: Beyond the Bubble, The Bitcoin Rabbi, etc.) -->
+            <div class="resource-item slide-in-right editable-content">
+                <a href="#" target="_blank">Andere documentaires</a>
+                <p>Voeg hier andere belangrijke Bitcoin documentaires en YouTube kanalen toe...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Websites & Tools -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">05 — Tools</div>
+        <h2 class="fade-in">🌐 Websites & Tools</h2>
+        <p class="fade-in">Nuttige websites om Bitcoin te volgen en te begrijpen.</p>
+        
+        <div class="resources-section">
+            <!-- ✏️ JOUW TEKST HIER: Voeg nuttige websites toe -->
+            <div class="resource-item slide-in-left editable-content">
+                <a href="https://bitcoin.nl" target="_blank">Bitcoin.nl</a>
+                <p>Nederlandse Bitcoin community en informatie...</p>
+            </div>
+            
+            <div class="resource-item slide-in-left editable-content">
+                <a href="https://mempool.space" target="_blank">Mempool.space</a>
+                <p>Block explorer om Bitcoin transacties te bekijken...</p>
+            </div>
+            
+            <div class="resource-item slide-in-left editable-content">
+                <a href="#" target="_blank">Andere tools</a>
+                <p>Clark Moody Dashboard, Bitcoin Visuals, etc...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Communities -->
+<section>
+    <div class="container">
+        <div class="section-number fade-in">06 — Communities</div>
+        <h2 class="fade-in">👥 Communities</h2>
+        <p class="fade-in">Leer van anderen en stel je vragen.</p>
+        
+        <div class="resources-section">
+            <!-- ✏️ JOUW TEKST HIER: Voeg communities toe -->
+            <div class="resource-item slide-in-right editable-content">
+                <a href="#" target="_blank">Bitcoin Meetups Nederland</a>
+                <p>Lokale Bitcoin meetups in jouw regio...</p>
+            </div>
+            
+            <div class="resource-item slide-in-right editable-content">
+                <a href="#" target="_blank">Telegram Groepen</a>
+                <p>Nederlandse Bitcoin Telegram communities...</p>
+            </div>
+            
+            <div class="resource-item slide-in-right editable-content">
+                <a href="#" target="_blank">Nostr</a>
+                <p>Gedecentraliseerd social netwerk met sterke Bitcoin community...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Waarschuwingen -->
+<section class="alt-bg">
+    <div class="container">
+        <div class="section-number fade-in">07 — Let Op</div>
+        <h2 class="fade-in">⚠️ Waar Je Op Moet Letten</h2>
+        <p class="fade-in">Niet alle "Bitcoin educatie" is goed. Hier zijn rode vlaggen:</p>
+        
+        <ul style="max-width:700px; margin:40px auto;">
+            <!-- ✏️ JOUW TEKST HIER: Voeg waarschuwingen toe over scams, trading courses, etc. -->
+            <li class="slide-in-left editable-content">
+                <strong>Red flag:</strong> Cursussen die beloven "snel rijk worden met Bitcoin"
+            </li>
+            <li class="slide-in-left editable-content">
+                <strong>Red flag:</strong> "Experts" die trading cursussen verkopen voor veel geld
+            </li>
+            <li class="slide-in-left editable-content">
+                <strong>Red flag:</strong> Bronnen die zeggen "je moet NU kopen!"
+            </li>
+        </ul>
+        
+        <p class="highlight scale-in">
+            Goede Bitcoin educatie is geduldig, eerlijk over risico's, en pusht je niet om te kopen. Het doel is begrip, niet verkoop.
+        </p>
+    </div>
+</section>
+
+<!-- Related Pages -->
+<section>
+    <div class="container">
+        <div class="related-pages">
+            <h3>Wat Nu?</h3>
+            <div class="related-grid">
+                <a href="zelf-beginnen.html" class="related-card">
+                    <h4>→ Zelf Beginnen</h4>
+                    <p>Klaar om je eerste sats te kopen? Volg de stap-voor-stap handleiding.</p>
+                </a>
+                <a href="hoe-werkt-bitcoin.html" class="related-card">
+                    <h4>← Hoe Werkt Bitcoin?</h4>
+                    <p>Wil je eerst begrijpen hoe het technisch werkt?</p>
+                </a>
+                <a href="../index.html" class="related-card">
+                    <h4>↑ Terug Naar Home</h4>
+                    <p>Terug naar het overzicht.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="wat-is-geld.html">Wat is Geld?</a>
+        <a href="bitcoin-vs-crypto.html">BTC vs Crypto</a>
+        <a href="hoe-werkt-bitcoin.html">Hoe Werkt Het?</a>
+        <a href="zelf-beginnen.html">Zelf Beginnen</a>
+        <a href="resources.html">Resources</a>
+    </div>
+    <p class="footer-note">
+        Gemaakt met ₿ en ☕ | Geen financieel advies | Open source onder MIT licentie
+    </p>
+</footer>
+
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+</body>
+</html>
