@@ -59,71 +59,217 @@ window.addEventListener('scroll', () => {
     </div>
 </section>
 
+<!-- Sectie 01 — De Blockchain -->
 <section class="alt-bg">
     <div class="container">
         <div class="section-number fade-in">01 — Blockchain</div>
         <h2 class="fade-in">De Blockchain - Simpel Uitgelegd</h2>
-        <!-- ✏️ JOUW TEKST HIER: Excel sheet vergelijking, waarom "keten van blokken" -->
-        <p class="fade-in editable-content">
-            Stel je een Excel sheet voor die iedereen kan zien, maar niemand kan vervalsen. Dat is in essentie wat de blockchain is...
+        
+        <p class="fade-in">
+            Stel je een Excel sheet voor waar álle Bitcoin transacties ooit in staan. Van de allereerste tot de laatste van 5 minuten geleden. Dat is in essentie wat de blockchain is.
+        </p>
+        
+        <p class="fade-in">
+            Maar in plaats van dat één persoon deze Excel sheet heeft, heeft iedereen een kopie. Er zijn duizenden computers over de hele wereld die exact dezelfde lijst bijhouden. Als jij probeert te frauderen en een regel verandert, zien alle andere computers: "Hé, die klopt niet met mijn versie!"
+        </p>
+        
+        <p class="fade-in">
+            Waarom heet het "blockchain"? Omdat transacties worden gebundeld in "blokken". Elk nieuw blok verwijst naar het vorige blok. Zo ontstaat er een keten (chain) van blokken, vandaar: blockchain.
+        </p>
+        
+        <p class="highlight scale-in">
+            Stel iemand wil een oude transactie vervalsen. Dan moet hij niet alleen dat ene blok veranderen, maar ook alle blokken die erna kwamen. En dat op duizenden computers tegelijk. Zo goed als onmogelijk.
         </p>
     </div>
 </section>
 
+<!-- Sectie 02 — Mining -->
 <section>
     <div class="container">
         <div class="section-number fade-in">02 — Mining</div>
         <h2 class="fade-in">Mining - Wat is Dat?</h2>
-        <!-- ✏️ JOUW TEKST HIER: Computers lossen puzzels op, waarom dat veilig maakt, energie discussie -->
-        <p class="fade-in editable-content">
-            "Mining" klinkt alsof je met een pikhouweel Bitcoin uit de grond graaft. Maar het is eigenlijk computers die wiskundige puzzels oplossen...
+        
+        <p class="fade-in">
+            "Mining" suggereert dat je Bitcoin uit de grond graaft. Maar het is digitaal: miners zijn computers die wiskundige puzzels oplossen.
         </p>
+        
+        <h3 class="fade-in" style="margin-top:40px;">Waarom puzzels?</h3>
+        <p class="fade-in">
+            Elk nieuw blok met transacties moet "goedgekeurd" worden voordat het aan de blockchain wordt toegevoegd. Om goedkeuring te krijgen, moet een miner een moeilijke rekensom oplossen.
+        </p>
+        
+        <h3 class="fade-in" style="margin-top:40px;">Hoe moeilijk?</h3>
+        <p class="fade-in">
+            Zo moeilijk dat het gemiddeld 10 minuten duurt voordat één van de duizenden miners de oplossing vindt. Dit is geen toeval - Bitcoin past de moeilijkheid automatisch aan om het altijd rond de 10 minuten te houden.
+        </p>
+        
+        <h3 class="fade-in" style="margin-top:40px;">Waarom zou je minen?</h3>
+        <p class="fade-in">
+            Beloning! De miner die de puzzel oplost, krijgt nieuwe Bitcoin als beloning. Nu is dat 3,125 Bitcoin per blok (sinds april 2024). Daarom investeren mensen in mining: het is letterlijk geld verdienen door je computer puzzels te laten oplossen.
+        </p>
+        
+        <div class="comparison scale-in">
+            <p><strong>De energie-discussie:</strong></p>
+            <p>Ja, Bitcoin mining gebruikt veel energie. Ongeveer evenveel als een klein land. Maar:</p>
+            <ul style="text-align:left; list-style:disc; padding-left:40px;">
+                <li>Veel miners gebruiken hernieuwbare energie (waterkracht, zonne-energie)</li>
+                <li>Die energie zou anders verspild worden (nachtstroom die niemand gebruikt)</li>
+                <li>Het is een bewuste keuze: veiligheid kost energie</li>
+            </ul>
+            <p style="margin-top:15px;">Vergelijk het met goud: hoeveel energie kost het om goud te mijnen, te bewaken, en te transporteren?</p>
+        </div>
     </div>
 </section>
 
+<!-- Sectie 03 — Wallets -->
 <section class="alt-bg">
     <div class="container">
         <div class="section-number fade-in">03 — Wallets</div>
         <h2 class="fade-in">Wallets - Jouw Sleutels</h2>
-        <!-- ✏️ JOUW TEKST HIER: Public key = adres, Private key = sleutel, "Not your keys not your coins" -->
-        <p class="fade-in editable-content">
-            Een Bitcoin wallet bewaart eigenlijk geen Bitcoin - het bewaart je sleutels. Het is alsof je een sleutelbos hebt voor kluisjes...
+        
+        <h3 class="fade-in">Public key = je adres</h3>
+        <p class="fade-in">
+            Een Bitcoin adres is als je huisadres. Je kunt het delen met iedereen die je geld wil sturen. Het ziet eruit als: <code style="background:rgba(255,255,255,0.1);padding:5px;border-radius:5px;">bc1q...</code> (een lange reeks letters en cijfers).
+        </p>
+        
+        <h3 class="fade-in" style="margin-top:40px;">Private key = je huissleutel</h3>
+        <p class="fade-in">
+            Je private key is de sleutel tot je Bitcoin. Wie de private key heeft, kan het geld uitgeven. Daarom moet je deze geheim houden. Altijd.
+        </p>
+        
+        <div class="comparison scale-in">
+            <p><strong>"Not your keys, not your coins"</strong></p>
+            <p>Als je Bitcoin op een exchange laat staan, beheren zij de private keys. Jij hebt alleen een belofte dat je het mag uitgeven. Pas als je de private keys zelf hebt (in je eigen wallet), is het echt van jou.</p>
+        </div>
+        
+        <h3 class="fade-in" style="margin-top:40px;">Seed phrase</h3>
+        <p class="fade-in">
+            Wanneer je een wallet aanmaakt, krijg je 12 of 24 woorden. Deze woorden zijn je private key in mensentaal. Met deze woorden kun je je wallet altijd terughalen, zelfs als je telefoon kapot gaat.
+        </p>
+        
+        <p class="highlight scale-in">
+            Verlies je telefoon = niet erg.<br>
+            Verlies je seed phrase = je Bitcoin is voor altijd weg.
         </p>
     </div>
 </section>
 
+<!-- Sectie 04 — Transacties -->
 <section>
     <div class="container">
         <div class="section-number fade-in">04 — Transacties</div>
         <h2 class="fade-in">Transacties - Hoe Het Werkt</h2>
-        <!-- ✏️ JOUW TEKST HIER: Van A naar B, verificatie, waarom veilig -->
-        <p class="fade-in editable-content">
-            Als je Bitcoin verstuurt naar iemand, gebeurt er dit: jij signeert met je private key, het netwerk verifieert, miners bevestigen...
+        
+        <h3 class="fade-in">Van A naar B</h3>
+        <p class="fade-in">
+            Stel je wilt 0,001 Bitcoin naar een vriend sturen. Dit gebeurt er:
+        </p>
+        
+        <ul>
+            <li class="slide-in-left"><strong>1. Jij maakt de transactie aan</strong> in je wallet: "0,001 BTC van mijn adres naar adres van vriend"</li>
+            <li class="slide-in-left"><strong>2. Jij signeert met je private key</strong>: Dit bewijst dat jij het echt bent</li>
+            <li class="slide-in-left"><strong>3. De transactie wordt uitgezonden</strong> naar het netwerk: duizenden computers krijgen jouw transactie te zien</li>
+            <li class="slide-in-left"><strong>4. Miners pakken je transactie op</strong> en stoppen het in een nieuw blok</li>
+            <li class="slide-in-left"><strong>5. Het blok wordt goedgekeurd</strong> (puzzel opgelost) en toegevoegd aan de blockchain</li>
+            <li class="slide-in-left"><strong>6. Klaar!</strong> Je vriend heeft de Bitcoin ontvangen</li>
+        </ul>
+        
+        <h3 class="fade-in" style="margin-top:40px;">Verificatie door het netwerk</h3>
+        <p class="fade-in">
+            Voordat miners je transactie accepteren, checken ze:
+        </p>
+        <ul>
+            <li class="slide-in-right">Heb je wel genoeg Bitcoin?</li>
+            <li class="slide-in-right">Is je signature geldig (ben je echt de eigenaar)?</li>
+            <li class="slide-in-right">Probeer je niet dezelfde Bitcoin twee keer uit te geven?</li>
+        </ul>
+        
+        <p class="fade-in">
+            Als ook maar één van deze checks faalt, wijst het netwerk je transactie af.
+        </p>
+        
+        <h3 class="fade-in" style="margin-top:40px;">Waarom duurt het 10 minuten?</h3>
+        <p class="fade-in">
+            Omdat er gemiddeld elke 10 minuten een nieuw blok wordt gemaakt. Je transactie komt in een blok, en dat blok moet eerst "goedgekeurd" worden door de miners.
+        </p>
+        
+        <p class="fade-in">
+            Voor belangrijke transacties wachten mensen vaak op 6 blokken (±1 uur). Dan is het vrijwel zeker dat de transactie permanent is.
         </p>
     </div>
 </section>
 
+<!-- Sectie 05 — Lightning Network -->
 <section class="alt-bg">
     <div class="container">
         <div class="section-number fade-in">05 — Lightning</div>
         <h2 class="fade-in">Lightning Network - Snelle Betalingen</h2>
-        <!-- ✏️ JOUW TEKST HIER: Wat Lightning oplost, vergelijking bankrekening vs portemonnee -->
-        <p class="fade-in editable-content">
-            Bitcoin op de main chain is langzaam - dat is een feature, geen bug. Voor dagelijkse betalingen gebruiken we Lightning...
+        
+        <h3 class="fade-in">Het probleem</h3>
+        <p class="fade-in">
+            Bitcoin op de main chain is traag en duur. Elke transactie moet in een blok, en er is maar beperkt ruimte. Voor een kop koffie van €3 betaal je soms €2 transactiekosten. Dat werkt niet.
+        </p>
+        
+        <h3 class="fade-in" style="margin-top:40px;">De oplossing: Lightning</h3>
+        <p class="fade-in">
+            Lightning is een "laag bovenop Bitcoin". Denk aan het zo:
+        </p>
+        <ul>
+            <li class="slide-in-left"><strong>Bitcoin main chain</strong> = je spaarrekening. Veilig, langzaam, voor grote bedragen</li>
+            <li class="slide-in-left"><strong>Lightning</strong> = je portemonnee. Snel, goedkoop, voor dagelijkse betalingen</li>
+        </ul>
+        
+        <h3 class="fade-in" style="margin-top:40px;">Hoe werkt het?</h3>
+        <p class="fade-in">
+            Je opent een "channel" met iemand (bijvoorbeeld een café). Je stort 100.000 sats in dit channel. Daarna kun je binnen dat channel instant betalingen doen zonder dat elke transactie op de blockchain hoeft.
+        </p>
+        
+        <p class="fade-in">
+            Koop je 10x koffie? Binnen het Lightning channel worden die betalingen bijgehouden. Pas als je het channel sluit, wordt het eindresultaat op de Bitcoin blockchain gezet.
+        </p>
+        
+        <div class="comparison scale-in">
+            <p><strong>Waarom is dit veilig?</strong></p>
+            <p>Omdat het gebouwd is op Bitcoin. De echte Bitcoin zit altijd veilig in een multi-signature contract op de blockchain. Lightning is alleen een manier om sneller transacties te doen zonder de veiligheid op te geven.</p>
+        </div>
+        
+        <p class="highlight scale-in">
+            Lightning maakt Bitcoin bruikbaar voor dagelijkse betalingen. Een kop koffie voor 1 cent transactiekosten, instant afgerekend. Dat is wat Bitcoin nodig heeft om écht geld te worden.
         </p>
     </div>
 </section>
 
+<!-- Sectie 06 — FAQ -->
 <section>
     <div class="container">
         <div class="section-number fade-in">06 — FAQ</div>
         <h2 class="fade-in">Veelgestelde Vragen</h2>
+        
         <ul style="max-width:700px; margin:40px auto;">
-            <!-- ✏️ JOUW TEKST HIER: Antwoorden op veel gestelde vragen -->
-            <li class="slide-in-left editable-content"><strong>Kan Bitcoin gehackt worden?</strong> Het netwerk zelf? Vrijwel onmogelijk. Jouw wallet? Alleen als je onvoorzichtig bent...</li>
-            <li class="slide-in-left editable-content"><strong>Wat als internet uitvalt?</strong> Antwoord toevoegen...</li>
-            <li class="slide-in-left editable-content"><strong>Kan de overheid het stoppen?</strong> Antwoord toevoegen...</li>
-            <li class="slide-in-left editable-content"><strong>Is Bitcoin anoniem?</strong> Antwoord toevoegen...</li>
+            <li class="slide-in-left">
+                <strong>Q: Kan Bitcoin gehackt worden?</strong><br>
+                <strong>A:</strong> Het netwerk zelf? Vrijwel onmogelijk. Je zou meer rekenkracht nodig hebben dan alle Bitcoin miners bij elkaar - dat zijn miljoenen dollars per uur aan elektriciteit.<br><br>
+                Jouw wallet? Ja, als je onvoorzichtig bent. Seed phrase op een foto? Phishing mail? Fake wallet app? Dan kun je gehackt worden. Maar dat is geen probleem van Bitcoin, dat is een probleem van jouw beveiliging.
+            </li>
+            
+            <li class="slide-in-left">
+                <strong>Q: Wat als het internet uitvalt?</strong><br>
+                <strong>A:</strong> Lokaal internet uit? Geen probleem, zodra je weer online bent synchroniseert je wallet.<br><br>
+                Wereldwijd internet uit? Dan hebben we grotere problemen dan Bitcoin. Maar zelfs dan: zodra het internet terugkomt, draait Bitcoin gewoon verder. De blockchain zit op duizenden computers, als er ook maar één nog online is, leeft Bitcoin.
+            </li>
+            
+            <li class="slide-in-left">
+                <strong>Q: Kan de overheid het stoppen?</strong><br>
+                <strong>A:</strong> Technisch? Nee. Er is geen centrale server om uit te schakelen. Er zijn nodes in 100+ landen. Je zou letterlijk duizenden computers over de hele wereld tegelijk moeten uitschakelen.<br><br>
+                Kunnen ze het moeilijk maken? Ja. Exchanges verbieden, mining illegaal maken. Maar Bitcoin zelf stoppen? Dat is als het internet verbieden - technisch niet haalbaar.
+            </li>
+            
+            <li class="slide-in-left">
+                <strong>Q: Is Bitcoin anoniem?</strong><br>
+                <strong>A:</strong> Nee, het is <strong>pseudoniem</strong>. Je identiteit is niet direct gekoppeld aan je Bitcoin adres, maar alle transacties zijn openbaar zichtbaar.<br><br>
+                Als iemand weet dat adres XYZ van jou is, kunnen ze al je transacties zien. Daarom is Bitcoin niet ideaal voor volledige privacy (daarvoor zijn er andere tools).<br><br>
+                Maar: voor gewone mensen biedt het genoeg privacy. Je buurman ziet niet zomaar je Bitcoin saldo.
+            </li>
         </ul>
     </div>
 </section>
