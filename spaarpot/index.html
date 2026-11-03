@@ -7,6 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#16112e">
+<meta name="robots" content="noindex, nofollow">
 <title>Mijn sats</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -94,6 +95,8 @@
   .tx-memo { font-weight: 600; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .tx-time { font-size: 13px; color: var(--muted); }
   .tx-amt { font-weight: 800; font-size: 17px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .tx-right { text-align: right; flex: none; }
+  .tx-eur { font-size: 13px; color: var(--muted); white-space: nowrap; }
   .tx.in .tx-amt { color: var(--in); }
   .tx.out .tx-amt { color: var(--out); }
   .tag { font-size: 11px; background: rgba(255,255,255,0.12); padding: 1px 7px; border-radius: 99px; margin-left: 4px; vertical-align: 2px; }
@@ -339,7 +342,15 @@ function renderTx(list) {
     const amt = document.createElement('div'); amt.className = 'tx-amt';
     amt.textContent = (incoming ? '+' : '−') + nf.format(Math.abs(t.sats));
 
-    row.append(icon, main, amt);
+    const right = document.createElement('div'); right.className = 'tx-right';
+    right.appendChild(amt);
+    if (showEur && eurRate) {
+      const eur = document.createElement('div'); eur.className = 'tx-eur';
+      eur.textContent = '≈ ' + eurFmt.format(Math.abs(t.sats) / 1e8 * eurRate);
+      right.appendChild(eur);
+    }
+
+    row.append(icon, main, right);
     box.appendChild(row);
   }
 }
