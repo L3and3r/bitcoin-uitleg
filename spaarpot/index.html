@@ -1,1 +1,406 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#16112e">
+<title>Mijn sats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #f7931a;
+    --bg: #16112e;
+    --card: rgba(255,255,255,0.07);
+    --line: rgba(255,255,255,0.12);
+    --text: #fff8ee;
+    --muted: rgba(255,248,238,0.6);
+    --in: #4ade80;
+    --out: #fb923c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Baloo 2", system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 50% -10%, color-mix(in srgb, var(--accent) 45%, transparent), transparent 60%),
+      radial-gradient(circle at 100% 100%, rgba(120,90,255,0.25), transparent 50%);
+    background-attachment: fixed;
+    min-height: 100%;
+    padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+  }
+  main { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
 
+  header { display: flex; align-items: center; gap: 12px; }
+  .avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 30px;
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+    border: 2px solid var(--accent);
+  }
+  .hello { font-size: 15px; color: var(--muted); line-height: 1.1; }
+  .name { font-size: 26px; font-weight: 800; line-height: 1.1; }
+
+  .balance-card {
+    text-align: center; padding: 28px 16px 22px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 28px; cursor: pointer; position: relative; overflow: hidden;
+    user-select: none;
+  }
+  .label { font-size: 15px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+  .amount {
+    font-size: clamp(48px, 16vw, 72px); font-weight: 800; line-height: 1.05;
+    margin-top: 4px; font-variant-numeric: tabular-nums;
+  }
+  .amount .unit { font-size: 0.38em; font-weight: 700; color: var(--accent); margin-left: 6px; }
+  .bolt { display: inline-block; color: var(--accent); }
+  .eur { font-size: 18px; color: var(--muted); margin-top: 2px; min-height: 1.4em; }
+  .pop { animation: pop 0.6s ease; }
+  @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
+
+  .goal { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 16px 18px; }
+  .goal-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .goal-name { font-weight: 700; font-size: 18px; }
+  .goal-pct { font-weight: 800; color: var(--accent); font-size: 18px; }
+  .bar { height: 16px; border-radius: 99px; background: rgba(255,255,255,0.1); margin: 10px 0 6px; overflow: hidden; }
+  .fill {
+    height: 100%; width: 0; border-radius: 99px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 70%, #fff), var(--accent));
+    transition: width 1s cubic-bezier(.2,.8,.2,1);
+  }
+  .goal-sub { font-size: 15px; color: var(--muted); }
+
+  h2 { font-size: 18px; font-weight: 700; padding: 0 4px; }
+  .tx-list { display: flex; flex-direction: column; gap: 10px; }
+  .tx {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 20px; padding: 12px 14px;
+  }
+  .tx-icon {
+    width: 40px; height: 40px; border-radius: 50%; flex: none;
+    display: grid; place-items: center; font-size: 20px; font-weight: 800;
+  }
+  .tx.in .tx-icon { background: rgba(74,222,128,0.15); color: var(--in); }
+  .tx.out .tx-icon { background: rgba(251,146,60,0.15); color: var(--out); }
+  .tx-main { flex: 1; min-width: 0; }
+  .tx-memo { font-weight: 600; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tx-time { font-size: 13px; color: var(--muted); }
+  .tx-amt { font-weight: 800; font-size: 17px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .tx.in .tx-amt { color: var(--in); }
+  .tx.out .tx-amt { color: var(--out); }
+  .tag { font-size: 11px; background: rgba(255,255,255,0.12); padding: 1px 7px; border-radius: 99px; margin-left: 4px; vertical-align: 2px; }
+  .empty { text-align: center; color: var(--muted); padding: 18px; }
+
+  .foot { text-align: center; font-size: 12px; color: var(--muted); }
+  .error {
+    background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.4);
+    border-radius: 18px; padding: 14px 16px; font-size: 15px;
+  }
+  .error code { font-size: 12px; word-break: break-all; }
+  .hidden { display: none !important; }
+
+  .spark {
+    position: fixed; pointer-events: none; font-size: 26px; z-index: 10;
+    animation: fly 1.4s ease-out forwards;
+  }
+  @keyframes fly {
+    0% { transform: translate(0,0) scale(0.6); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(1.1) rotate(var(--rot)); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pop, .spark { animation: none; }
+    .fill { transition: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="avatar" id="emoji">⚡</div>
+    <div>
+      <div class="hello">Hoi</div>
+      <div class="name" id="name">…</div>
+    </div>
+  </header>
+
+  <section class="balance-card" id="balanceCard" title="Tik om te verversen">
+    <div class="label">Jouw spaarpot</div>
+    <div class="amount"><span id="sats">–</span><span class="unit">sats</span></div>
+    <div class="eur" id="eur"></div>
+  </section>
+
+  <section class="goal hidden" id="goal">
+    <div class="goal-top">
+      <div class="goal-name" id="goalName">Spaardoel</div>
+      <div class="goal-pct" id="goalPct">0%</div>
+    </div>
+    <div class="bar"><div class="fill" id="goalFill"></div></div>
+    <div class="goal-sub" id="goalSub"></div>
+  </section>
+
+  <div class="error hidden" id="error"></div>
+
+  <section>
+    <h2>Laatste transacties</h2>
+    <div class="tx-list" id="txList"><div class="empty">Laden…</div></div>
+  </section>
+
+  <div class="foot" id="foot"></div>
+</main>
+
+<script>
+/* ===== Instellingen =====
+   Alles kan via de URL-fragment (na #), zodat je één bestand voor alle kinderen gebruikt:
+   sats-wallet.html#key=INVOICE_KEY&name=Noor&emoji=🦊&color=%23a855f7&goaleur=40&goalname=Lego&eur=1
+   Je kunt ook hieronder vaste waarden invullen.                                              */
+const DEFAULTS = {
+  url: '',          // LNbits basis-URL, bv. https://lnbits.jouwdomein.nl (leeg = zelfde server als deze pagina)
+  key: '',          // Invoice/read key van de wallet (NOOIT de admin key)
+  name: '',         // naam van het kind (leeg = walletnaam uit LNbits)
+  emoji: '⚡',
+  color: '#f7931a', // themakleur
+  goal: 0,          // spaardoel in sats (0 = uit)
+  goaleur: 0,       // of: spaardoel in euro's, bv. 39.99 (gaat voor 'goal')
+  goalname: '',     // waar wordt voor gespaard
+  eur: '0',         // 1 = toon euro-waarde
+  count: 3,         // aantal transacties
+  refresh: 30       // seconden tussen verversen
+};
+
+const params = new URLSearchParams(location.hash.slice(1));
+const cfg = { ...DEFAULTS };
+for (const k of Object.keys(DEFAULTS)) if (params.has(k)) cfg[k] = params.get(k);
+
+const base = (cfg.url || location.origin).replace(/\/+$/, '');
+const goal = Math.max(0, parseInt(cfg.goal, 10) || 0);
+const count = Math.min(10, Math.max(1, parseInt(cfg.count, 10) || 3));
+const refreshMs = Math.max(10, parseInt(cfg.refresh, 10) || 30) * 1000;
+const goalEur = Math.max(0, parseFloat(String(cfg.goaleur).replace(',', '.')) || 0);
+const showEur = cfg.eur === '1' || cfg.eur === 'true';
+
+const $ = id => document.getElementById(id);
+const nf = new Intl.NumberFormat('nl-NL');
+const eurFmt = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' });
+
+// Thema
+let color = String(cfg.color).trim();
+if (/^[0-9a-f]{3,8}$/i.test(color)) color = '#' + color;
+if (/^#[0-9a-f]{3,8}$/i.test(color)) document.documentElement.style.setProperty('--accent', color);
+$('emoji').textContent = cfg.emoji || '⚡';
+if (cfg.name) { $('name').textContent = cfg.name; document.title = cfg.name + ' – sats'; }
+
+// Opslag (alleen voor de "er kwam iets binnen"-animatie)
+const storeKey = 'satswallet:' + (cfg.key || '').slice(0, 8);
+function loadLast() { try { const v = localStorage.getItem(storeKey); return v === null ? null : Number(v); } catch { return null; } }
+function saveLast(v) { try { localStorage.setItem(storeKey, String(v)); } catch {} }
+
+let shown = null;      // huidig getoonde saldo
+let lastKnown = loadLast();
+let eurRate = null, eurFetched = 0;
+
+async function api(path) {
+  const r = await fetch(base + path, { headers: { 'X-Api-Key': cfg.key }, cache: 'no-store' });
+  if (!r.ok) throw new Error('HTTP ' + r.status + ' op ' + path);
+  return r.json();
+}
+
+function normalize(p) {
+  const status = p.status || (p.pending ? 'pending' : 'success');
+  const t = p.time ?? p.created_at;
+  const date = typeof t === 'number' ? new Date(t * 1000) : new Date(t);
+  return { sats: Math.round((p.amount || 0) / 1000), memo: (p.memo || '').trim(), status, date };
+}
+
+function timeAgo(d) {
+  if (!(d instanceof Date) || isNaN(d)) return '';
+  const s = (Date.now() - d.getTime()) / 1000;
+  if (s < 60) return 'zojuist';
+  if (s < 3600) return Math.floor(s / 60) + ' min geleden';
+  if (s < 86400) return Math.floor(s / 3600) + ' uur geleden';
+  const days = Math.floor(s / 86400);
+  if (days === 1) return 'gisteren';
+  if (days < 7) return days + ' dagen geleden';
+  return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' });
+}
+
+function animateNumber(from, to) {
+  const el = $('sats');
+  if (from === null || from === to || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = nf.format(to); return;
+  }
+  const start = performance.now(), dur = 900;
+  const step = now => {
+    const k = Math.min(1, (now - start) / dur);
+    const e = 1 - Math.pow(1 - k, 3);
+    el.textContent = nf.format(Math.round(from + (to - from) * e));
+    if (k < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+function celebrate() {
+  const card = $('balanceCard');
+  card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const r = card.getBoundingClientRect();
+  const icons = ['⚡', '🪙', '✨', '⚡', '🧡'];
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('span');
+    s.className = 'spark';
+    s.textContent = icons[i % icons.length];
+    s.style.left = (r.left + r.width / 2) + 'px';
+    s.style.top = (r.top + r.height / 2) + 'px';
+    const a = Math.random() * Math.PI * 2, dist = 90 + Math.random() * 140;
+    s.style.setProperty('--dx', Math.cos(a) * dist + 'px');
+    s.style.setProperty('--dy', Math.sin(a) * dist - 60 + 'px');
+    s.style.setProperty('--rot', (Math.random() * 360 - 180) + 'deg');
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1500);
+  }
+}
+
+// Koersbronnen, in volgorde: eigen LNbits, mempool.space, Coinbase. Geeft EUR per BTC.
+const RATE_SOURCES = [
+  async () => { const j = await api('/api/v1/rate/EUR'); return j.price || (j.rate ? 1e8 / j.rate : null); },
+  async () => (await (await fetch('https://mempool.space/api/v1/prices', { cache: 'no-store' })).json()).EUR,
+  async () => Number((await (await fetch('https://api.coinbase.com/v2/prices/BTC-EUR/spot', { cache: 'no-store' })).json()).data.amount)
+];
+let rateError = '';
+async function getRate() {
+  if (eurRate && Date.now() - eurFetched < 10 * 60 * 1000) return eurRate;
+  const errors = [];
+  for (const src of RATE_SOURCES) {
+    try {
+      const v = Number(await src());
+      if (v > 1000) { eurRate = v; eurFetched = Date.now(); rateError = ''; return eurRate; }
+      errors.push('ongeldige koers');
+    } catch (e) { errors.push(e.message || String(e)); }
+  }
+  rateError = errors.join(' | ');
+  return eurRate;
+}
+
+function renderEur(sats) {
+  if (!showEur) return;
+  $('eur').textContent = eurRate ? '≈ ' + eurFmt.format(sats / 1e8 * eurRate) : 'euro-koers niet beschikbaar';
+}
+
+function renderGoal(sats) {
+  // Doel in euro's wordt met de actuele koers omgerekend naar sats
+  if (!goal && !goalEur) return;
+  $('goal').classList.remove('hidden');
+  const label = (cfg.goalname || 'Spaardoel') + (goalEur ? ' (' + eurFmt.format(goalEur) + ')' : '');
+  $('goalName').textContent = '🎯 ' + label;
+  const target = goalEur ? (eurRate ? Math.round(goalEur / eurRate * 1e8) : 0) : goal;
+  if (!target) { $('goalPct').textContent = ''; $('goalSub').textContent = 'Koers laden lukt niet…'; return; }
+  const pct = Math.min(100, Math.floor(sats / target * 100));
+  $('goalPct').textContent = pct + '%';
+  $('goalFill').style.width = pct + '%';
+  if (sats >= target) { $('goalSub').textContent = 'Doel bereikt! 🎉'; return; }
+  const left = target - sats;
+  $('goalSub').textContent = 'Nog ' + nf.format(left) + ' sats te gaan'
+    + (eurRate ? ' (≈ ' + eurFmt.format(left / 1e8 * eurRate) + ')' : '');
+}
+
+function renderTx(list) {
+  const box = $('txList');
+  box.replaceChildren();
+  if (!list.length) {
+    const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'Nog geen transacties';
+    box.appendChild(e); return;
+  }
+  for (const t of list) {
+    const incoming = t.sats > 0;
+    const row = document.createElement('div');
+    row.className = 'tx ' + (incoming ? 'in' : 'out');
+
+    const icon = document.createElement('div');
+    icon.className = 'tx-icon'; icon.textContent = incoming ? '↓' : '↑';
+
+    const main = document.createElement('div'); main.className = 'tx-main';
+    const memo = document.createElement('div'); memo.className = 'tx-memo';
+    memo.textContent = t.memo || (incoming ? 'Ontvangen' : 'Betaald');
+    const time = document.createElement('div'); time.className = 'tx-time';
+    time.textContent = timeAgo(t.date);
+    if (t.status === 'pending') {
+      const tag = document.createElement('span'); tag.className = 'tag'; tag.textContent = 'bezig';
+      time.appendChild(tag);
+    }
+    main.append(memo, time);
+
+    const amt = document.createElement('div'); amt.className = 'tx-amt';
+    amt.textContent = (incoming ? '+' : '−') + nf.format(Math.abs(t.sats));
+
+    row.append(icon, main, amt);
+    box.appendChild(row);
+  }
+}
+
+function showError(msg) {
+  const e = $('error');
+  e.classList.remove('hidden');
+  e.innerHTML = '';
+  const strong = document.createElement('strong'); strong.textContent = 'Kan de wallet niet laden. ';
+  const code = document.createElement('code'); code.textContent = msg;
+  e.append(strong, document.createElement('br'), code);
+}
+
+let loading = false;
+async function refresh() {
+  if (loading) return;
+  if (!cfg.key) {
+    showError('Geen key ingesteld. Voeg #key=JOUW_INVOICE_KEY toe aan de URL (zie uitleg in het bestand).');
+    $('txList').replaceChildren(); return;
+  }
+  loading = true;
+  try {
+    const [wallet, rawPays] = await Promise.all([
+      api('/api/v1/wallet'),
+      api('/api/v1/payments?limit=' + (count + 15))
+    ]);
+    $('error').classList.add('hidden');
+
+    if (!cfg.name && wallet.name) { $('name').textContent = wallet.name; document.title = wallet.name + ' – sats'; }
+
+    const sats = Math.floor((wallet.balance || 0) / 1000);
+    animateNumber(shown, sats);
+    if (lastKnown !== null && sats > lastKnown) celebrate();
+    shown = sats; lastKnown = sats; saveLast(sats);
+
+    if (showEur || goalEur) await getRate();
+    renderGoal(sats);
+    renderEur(sats);
+
+    const pays = (Array.isArray(rawPays) ? rawPays : (rawPays.data || []))
+      .map(normalize)
+      // geen mislukte betalingen en geen openstaande (nog niet betaalde) facturen
+      .filter(p => p.status !== 'failed' && !(p.status === 'pending' && p.sats > 0))
+      .sort((a, b) => b.date - a.date)
+      .slice(0, count);
+    renderTx(pays);
+
+    $('foot').textContent = 'Bijgewerkt ' + new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' }) + ' · tik op je saldo om te verversen'
+      + (rateError && !eurRate ? ' · koersfout: ' + rateError : '');
+  } catch (err) {
+    showError(err.message || String(err));
+  } finally {
+    loading = false;
+  }
+}
+
+$('balanceCard').addEventListener('click', refresh);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+window.addEventListener('hashchange', () => location.reload());
+setInterval(() => { if (!document.hidden) refresh(); }, refreshMs);
+refresh();
+</script>
+</body>
+</html>
