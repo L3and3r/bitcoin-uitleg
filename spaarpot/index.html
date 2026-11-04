@@ -77,6 +77,34 @@
     transition: width 1s cubic-bezier(.2,.8,.2,1);
   }
   .goal-sub { font-size: 15px; color: var(--muted); }
+  .goal-edit {
+    background: none; border: 0; color: var(--muted); font: inherit; font-size: 14px;
+    padding: 6px 0 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+  }
+  .goal-empty {
+    width: 100%; background: none; border: 2px dashed color-mix(in srgb, var(--accent) 60%, transparent);
+    color: var(--text); font: inherit; font-size: 18px; font-weight: 700;
+    border-radius: 16px; padding: 14px; cursor: pointer;
+  }
+  .goal-form { display: flex; flex-direction: column; gap: 10px; }
+  .goal-form label { font-size: 15px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+  .goal-form input {
+    font: inherit; font-size: 18px; color: var(--text);
+    background: rgba(255,255,255,0.08); border: 1px solid var(--line);
+    border-radius: 12px; padding: 10px 12px; width: 100%;
+  }
+  .goal-form input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  .eur-input { position: relative; }
+  .eur-input span { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--muted); }
+  .eur-input input { padding-left: 30px; }
+  .goal-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+  .goal-buttons button {
+    font: inherit; font-size: 16px; font-weight: 700; border-radius: 12px; padding: 9px 16px;
+    border: 1px solid var(--line); background: rgba(255,255,255,0.08); color: var(--text); cursor: pointer;
+  }
+  .goal-buttons .primary { background: var(--accent); border-color: var(--accent); color: #16112e; }
+  .goal-buttons .reset { margin-left: auto; background: none; border: 0; color: var(--muted); font-weight: 500; text-decoration: underline; }
+  .form-error { color: #fca5a5; font-size: 14px; min-height: 1em; }
 
   h2 { font-size: 18px; font-weight: 700; padding: 0 4px; }
   .tx-list { display: flex; flex-direction: column; gap: 10px; }
@@ -147,6 +175,28 @@
     </div>
     <div class="bar"><div class="fill" id="goalFill"></div></div>
     <div class="goal-sub" id="goalSub"></div>
+    <button class="goal-edit hidden" id="goalEditBtn" type="button">✏️ Spaardoel aanpassen</button>
+  </section>
+
+  <section class="goal hidden" id="goalEmpty">
+    <button class="goal-empty" id="goalEmptyBtn" type="button">🎯 Kies een spaardoel</button>
+  </section>
+
+  <section class="goal hidden" id="goalFormBox">
+    <form class="goal-form" id="goalForm" autocomplete="off">
+      <label>Waar spaar je voor?
+        <input id="fName" maxlength="40" placeholder="Bijvoorbeeld: een nieuwe fiets" enterkeyhint="next">
+      </label>
+      <label>Hoeveel kost het?
+        <div class="eur-input"><span>€</span><input id="fEur" inputmode="decimal" placeholder="100" enterkeyhint="done"></div>
+      </label>
+      <div class="form-error" id="fErr"></div>
+      <div class="goal-buttons">
+        <button type="submit" class="primary">Opslaan</button>
+        <button type="button" id="fCancel">Annuleren</button>
+        <button type="button" class="reset hidden" id="fReset">Wis mijn doel</button>
+      </div>
+    </form>
   </section>
 
   <div class="error hidden" id="error"></div>
@@ -161,9 +211,13 @@
 
 <script>
 /* ===== Instellingen =====
-   Alles kan via de URL-fragment (na #), zodat je één bestand voor alle kinderen gebruikt:
-   sats-wallet.html#key=INVOICE_KEY&name=Noor&emoji=🦊&color=%23a855f7&goaleur=40&goalname=Lego&eur=1
-   Je kunt ook hieronder vaste waarden invullen.                                              */
+   Twee manieren, ze werken allebei:
+   1. Centraal (aanrader): #kind=maan&key=INVOICE_KEY
+      Naam, emoji, kleur en spaardoel komen dan uit kinderen.json naast dit bestand.
+      Pas je dat bestand aan, dan verandert het op alle telefoons vanzelf.
+   2. Alles in de link (oude links blijven zo werken):
+      #url=...&key=INVOICE_KEY&name=Noor&emoji=🦊&color=%23a855f7&goaleur=40&goalname=Lego&eur=1
+   Volgorde: standaard hieronder < kinderen.json "standaard" < kinderen.json per kind < link. */
 const DEFAULTS = {
   url: '',          // LNbits basis-URL, bv. https://lnbits.jouwdomein.nl (leeg = zelfde server als deze pagina)
   key: '',          // Invoice/read key van de wallet (NOOIT de admin key)
@@ -173,35 +227,84 @@ const DEFAULTS = {
   goal: 0,          // spaardoel in sats (0 = uit)
   goaleur: 0,       // of: spaardoel in euro's, bv. 39.99 (gaat voor 'goal')
   goalname: '',     // waar wordt voor gespaard
+  goaledit: '1',    // 1 = kind mag zelf een spaardoel kiezen in de app, 0 = alleen jij bepaalt het
   eur: '0',         // 1 = toon euro-waarde
   count: 3,         // aantal transacties
   refresh: 30       // seconden tussen verversen
 };
 
 const params = new URLSearchParams(location.hash.slice(1));
-const cfg = { ...DEFAULTS };
-for (const k of Object.keys(DEFAULTS)) if (params.has(k)) cfg[k] = params.get(k);
-
-const base = (cfg.url || location.origin).replace(/\/+$/, '');
-const goal = Math.max(0, parseInt(cfg.goal, 10) || 0);
-const count = Math.min(10, Math.max(1, parseInt(cfg.count, 10) || 3));
-const refreshMs = Math.max(10, parseInt(cfg.refresh, 10) || 30) * 1000;
-const goalEur = Math.max(0, parseFloat(String(cfg.goaleur).replace(',', '.')) || 0);
-const showEur = cfg.eur === '1' || cfg.eur === 'true';
+const kind = (params.get('kind') || '').trim().toLowerCase();
+let cfg = { ...DEFAULTS };
+let base, goal, count, refreshMs, goalEur, showEur;
 
 const $ = id => document.getElementById(id);
 const nf = new Intl.NumberFormat('nl-NL');
 const eurFmt = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' });
 
-// Thema
-let color = String(cfg.color).trim();
-if (/^[0-9a-f]{3,8}$/i.test(color)) color = '#' + color;
-if (/^#[0-9a-f]{3,8}$/i.test(color)) document.documentElement.style.setProperty('--accent', color);
-$('emoji').textContent = cfg.emoji || '⚡';
-if (cfg.name) { $('name').textContent = cfg.name; document.title = cfg.name + ' – sats'; }
+// Centrale instellingen uit kinderen.json (alleen bij links met #kind=...)
+let central = {};
+let configError = '';
+async function loadCentral() {
+  if (!kind) return;
+  try {
+    const r = await fetch('kinderen.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const j = await r.json();
+    const kids = j.kinderen || {};
+    const own = kids[kind] || Object.entries(kids).find(([k]) => k.toLowerCase() === kind)?.[1];
+    if (!own) throw new Error('kind "' + kind + '" staat niet in kinderen.json');
+    const filled = o => Object.fromEntries(Object.entries(o || {}).filter(([, v]) => v !== '' && v !== null && v !== undefined));
+    central = { ...filled(j.standaard), ...filled(own) };
+    configError = '';
+  } catch (e) {
+    configError = 'kinderen.json: ' + (e.message || e);  // vorige instellingen blijven staan
+  }
+}
+
+// Spaardoel dat het kind zelf in de app kiest (bewaard op de telefoon zelf)
+const ownGoalKey = 'satswallet:goal:' + (params.get('key') || '').slice(0, 8);
+function loadOwnGoal() {
+  try { const g = JSON.parse(localStorage.getItem(ownGoalKey)); return g && g.eur > 0 ? g : null; } catch { return null; }
+}
+function saveOwnGoal(g) {
+  try { g ? localStorage.setItem(ownGoalKey, JSON.stringify(g)) : localStorage.removeItem(ownGoalKey); return true; } catch { return false; }
+}
+let canEdit = true, usingOwnGoal = false, editing = false;
+
+function applyConfig() {
+  const next = { ...DEFAULTS };
+  // lege waarden ("") in kinderen.json tellen als 'niet ingevuld'
+  for (const [k, v] of Object.entries(central)) if (k in DEFAULTS && v !== null && v !== undefined && v !== '') next[k] = String(v);
+  for (const k of Object.keys(DEFAULTS)) if (params.has(k)) next[k] = params.get(k);
+
+  canEdit = !(next.goaledit === '0' || next.goaledit === 'false');
+  const own = canEdit ? loadOwnGoal() : null;
+  usingOwnGoal = !!own;
+  if (own) { next.goaleur = String(own.eur); next.goalname = own.name || ''; next.goal = '0'; }
+  cfg = next;
+
+  base = (cfg.url || location.origin).replace(/\/+$/, '');
+  goal = Math.max(0, parseInt(cfg.goal, 10) || 0);
+  count = Math.min(10, Math.max(1, parseInt(cfg.count, 10) || 3));
+  refreshMs = Math.max(10, parseInt(cfg.refresh, 10) || 30) * 1000;
+  goalEur = Math.max(0, parseFloat(String(cfg.goaleur).replace(',', '.')) || 0);
+  showEur = cfg.eur === '1' || cfg.eur === 'true';
+
+  // Thema
+  let color = String(cfg.color).trim();
+  if (/^[0-9a-f]{3,8}$/i.test(color)) color = '#' + color;
+  if (/^#[0-9a-f]{3,8}$/i.test(color)) document.documentElement.style.setProperty('--accent', color);
+  $('emoji').textContent = cfg.emoji || '⚡';
+  if (cfg.name) { $('name').textContent = cfg.name; document.title = cfg.name + ' – sats'; }
+  if (!goal && !goalEur) $('goal').classList.add('hidden');
+  if (!showEur) $('eur').textContent = '';
+  updateGoalControls();
+}
+applyConfig();
 
 // Opslag (alleen voor de "er kwam iets binnen"-animatie)
-const storeKey = 'satswallet:' + (cfg.key || '').slice(0, 8);
+const storeKey = 'satswallet:' + (params.get('key') || '').slice(0, 8);
 function loadLast() { try { const v = localStorage.getItem(storeKey); return v === null ? null : Number(v); } catch { return null; } }
 function saveLast(v) { try { localStorage.setItem(storeKey, String(v)); } catch {} }
 
@@ -296,8 +399,48 @@ function renderEur(sats) {
   $('eur').textContent = eurRate ? '≈ ' + eurFmt.format(sats / 1e8 * eurRate) : 'euro-koers niet beschikbaar';
 }
 
+function updateGoalControls() {
+  const hasGoal = !!(goal || goalEur);
+  $('goalEditBtn').classList.toggle('hidden', !canEdit);
+  $('goalEmpty').classList.toggle('hidden', editing || hasGoal || !canEdit);
+  $('goalFormBox').classList.toggle('hidden', !editing);
+  if (editing || !hasGoal) $('goal').classList.add('hidden');
+}
+
+function openGoalForm() {
+  editing = true;
+  $('fName').value = usingOwnGoal ? (cfg.goalname || '') : '';
+  $('fEur').value = usingOwnGoal ? String(goalEur).replace('.', ',') : '';
+  $('fErr').textContent = '';
+  $('fReset').classList.toggle('hidden', !usingOwnGoal);
+  updateGoalControls();
+  $('fName').focus();
+}
+function closeGoalForm() {
+  editing = false;
+  applyConfig();
+  updateGoalControls();
+  if (shown !== null) { getRate().then(() => renderGoal(shown)); }
+}
+$('goalEditBtn').addEventListener('click', openGoalForm);
+$('goalEmptyBtn').addEventListener('click', openGoalForm);
+$('fCancel').addEventListener('click', closeGoalForm);
+$('fReset').addEventListener('click', () => { saveOwnGoal(null); closeGoalForm(); });
+$('goalForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('fName').value.trim();
+  const eur = parseFloat($('fEur').value.replace(/[^\d.,]/g, '').replace(/\.(?=\d{3}(\D|$))/g, '').replace(',', '.'));
+  if (!name) { $('fErr').textContent = 'Vul in waar je voor spaart.'; $('fName').focus(); return; }
+  if (!(eur > 0)) { $('fErr').textContent = 'Vul een bedrag in, bijvoorbeeld 25.'; $('fEur').focus(); return; }
+  if (eur > 100000) { $('fErr').textContent = 'Dat is wel héél veel. Kies een kleiner bedrag.'; return; }
+  if (!saveOwnGoal({ name, eur: Math.round(eur * 100) / 100 })) { $('fErr').textContent = 'Opslaan lukt niet op deze telefoon.'; return; }
+  closeGoalForm();
+});
+
 function renderGoal(sats) {
   // Doel in euro's wordt met de actuele koers omgerekend naar sats
+  if (editing) return;
+  updateGoalControls();
   if (!goal && !goalEur) return;
   $('goal').classList.remove('hidden');
   const label = (cfg.goalname || 'Spaardoel') + (goalEur ? ' (' + eurFmt.format(goalEur) + ')' : '');
@@ -373,6 +516,7 @@ async function refresh() {
   }
   loading = true;
   try {
+    if (kind) { await loadCentral(); applyConfig(); }
     const [wallet, rawPays] = await Promise.all([
       api('/api/v1/wallet'),
       api('/api/v1/payments?limit=' + (count + 15))
@@ -386,7 +530,7 @@ async function refresh() {
     if (lastKnown !== null && sats > lastKnown) celebrate();
     shown = sats; lastKnown = sats; saveLast(sats);
 
-    if (showEur || goalEur) await getRate();
+    if (showEur || goalEur || canEdit) await getRate();
     renderGoal(sats);
     renderEur(sats);
 
@@ -399,7 +543,8 @@ async function refresh() {
     renderTx(pays);
 
     $('foot').textContent = 'Bijgewerkt ' + new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' }) + ' · tik op je saldo om te verversen'
-      + (rateError && !eurRate ? ' · koersfout: ' + rateError : '');
+      + (rateError && !eurRate ? ' · koersfout: ' + rateError : '')
+      + (configError ? ' · ' + configError : '');
   } catch (err) {
     showError(err.message || String(err));
   } finally {
@@ -410,8 +555,11 @@ async function refresh() {
 $('balanceCard').addEventListener('click', refresh);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
 window.addEventListener('hashchange', () => location.reload());
-setInterval(() => { if (!document.hidden) refresh(); }, refreshMs);
-refresh();
+// Timer opnieuw plannen, zodat een gewijzigde 'refresh' uit kinderen.json meteen telt
+(async function loop() {
+  if (!document.hidden) await refresh();
+  setTimeout(loop, refreshMs);
+})();
 </script>
 </body>
 </html>
