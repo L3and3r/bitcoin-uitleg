@@ -8,11 +8,11 @@
     "goaledit": 1
   },
   "kinderen": {
-    "zeil":  { "emoji": "⛵", "color": "#38bdf8", "goaleur": "", "goalname": "" },
-    "kat":   { "emoji": "🐱", "color": "#f472b6", "goaleur": "", "goalname": "" },
-    "wolf":  { "emoji": "🐺", "color": "#a78bfa", "goaleur": "", "goalname": "" },
-    "piano": { "emoji": "🎹", "color": "#facc15", "goaleur": "", "goalname": "" },
-    "rock":  { "emoji": "🤘", "color": "#ef4444", "goaleur": "", "goalname": "" },
-    "turn":  { "emoji": "🤸", "color": "#f97316", "goaleur": "", "goalname": "" }
+    "zeil":  {"emoji": "⛵", "avatar": "avatars/zeil.svg", "color": "#38bdf8", "goaleur": "", "goalname": ""},
+    "kat":   {"emoji": "🐱", "avatar": "avatars/kat.svg", "color": "#f472b6", "goaleur": "", "goalname": ""},
+    "wolf":  {"emoji": "🐺", "avatar": "avatars/wolf.svg", "color": "#a78bfa", "goaleur": "", "goalname": ""},
+    "piano": {"emoji": "🎹", "avatar": "avatars/piano.svg", "color": "#facc15", "goaleur": "", "goalname": ""},
+    "rock":  {"emoji": "🎧", "avatar": "avatars/rock.svg", "color": "#ef4444", "goaleur": "", "goalname": ""},
+    "turn":  {"emoji": "🤸", "avatar": "avatars/turn.svg", "color": "#f97316", "goaleur": "", "goalname": ""}
   }
 }

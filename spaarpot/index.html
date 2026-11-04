@@ -40,6 +40,8 @@
   main { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
 
   header { display: flex; align-items: center; gap: 12px; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+  .avatar.has-img { width: 72px; height: 72px; background: #fff; overflow: hidden; }
   .avatar {
     width: 56px; height: 56px; border-radius: 50%;
     display: grid; place-items: center; font-size: 30px;
@@ -223,6 +225,7 @@ const DEFAULTS = {
   key: '',          // Invoice/read key van de wallet (NOOIT de admin key)
   name: '',         // naam van het kind (leeg = walletnaam uit LNbits)
   emoji: '⚡',
+  avatar: '',       // afbeelding, bv. avatars/zeil.png (naast dit bestand) of een https-adres; emoji is de reserve
   color: '#f7931a', // themakleur
   goal: 0,          // spaardoel in sats (0 = uit)
   goaleur: 0,       // of: spaardoel in euro's, bv. 39.99 (gaat voor 'goal')
@@ -272,6 +275,23 @@ function saveOwnGoal(g) {
 }
 let canEdit = true, usingOwnGoal = false, editing = false;
 
+// Avatar: afbeelding als die er is, anders (of als hij niet laadt) de emoji
+let avatarSrc = null;
+function setAvatar(src, emoji) {
+  const box = $('emoji');
+  src = String(src || '').trim();
+  if (src && !/^(https:\/\/|[\w.\-\/]+$)/i.test(src)) src = '';   // alleen https of een pad op je eigen site
+  if (src === avatarSrc && (src ? box.querySelector('img') : box.textContent === emoji)) return;
+  avatarSrc = src;
+  if (!src) { box.classList.remove('has-img'); box.textContent = emoji; return; }
+  const img = new Image();
+  img.alt = '';
+  img.onload = () => { if (avatarSrc === src) { box.replaceChildren(img); box.classList.add('has-img'); } };
+  img.onerror = () => { if (avatarSrc === src) { box.classList.remove('has-img'); box.textContent = emoji; } };
+  img.src = src;
+  if (!box.querySelector('img')) box.textContent = emoji;   // emoji tonen tot de afbeelding geladen is
+}
+
 function applyConfig() {
   const next = { ...DEFAULTS };
   // lege waarden ("") in kinderen.json tellen als 'niet ingevuld'
@@ -295,7 +315,7 @@ function applyConfig() {
   let color = String(cfg.color).trim();
   if (/^[0-9a-f]{3,8}$/i.test(color)) color = '#' + color;
   if (/^#[0-9a-f]{3,8}$/i.test(color)) document.documentElement.style.setProperty('--accent', color);
-  $('emoji').textContent = cfg.emoji || '⚡';
+  setAvatar(cfg.avatar, cfg.emoji || '⚡');
   if (cfg.name) { $('name').textContent = cfg.name; document.title = cfg.name + ' – sats'; }
   if (!goal && !goalEur) $('goal').classList.add('hidden');
   if (!showEur) $('eur').textContent = '';
