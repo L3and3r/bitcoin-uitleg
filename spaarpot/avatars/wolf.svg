@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#312e81"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+  <rect width="256" height="256" fill="url(#g)"/>
+  <circle cx="176" cy="78" r="44" fill="#fef9c3"/>
+  <circle cx="162" cy="66" r="7" fill="#fde68a"/><circle cx="190" cy="94" r="10" fill="#fde68a"/><circle cx="188" cy="62" r="5" fill="#fde68a"/>
+  <g fill="#c4b5fd" opacity="0.9"><circle cx="46" cy="44" r="2.5"/><circle cx="86" cy="26" r="2"/><circle cx="30" cy="96" r="2"/><circle cx="226" cy="150" r="2"/></g>
+  <path d="M0 230 Q70 196 150 214 T256 206 V256 H0 Z" fill="#1e1b4b"/>
+  <!-- wolf, zittend en huilend naar de maan -->
+  <g transform="translate(-20 -46) scale(1.2)" fill="#0b0820">
+  <path d="
+    M72 226
+    C66 196 70 170 82 150
+    C88 138 92 126 96 112
+    L92 92 L104 104
+    L112 88 L116 106
+    C124 100 132 92 140 82
+    L150 72 L146 90
+    C140 102 132 112 126 122
+    C130 140 134 160 132 180
+    C140 196 150 210 148 226
+    L134 226 C134 214 128 204 120 196
+    C116 208 116 218 118 226 L104 226
+    C104 214 100 206 96 200
+    C92 210 92 218 94 226 Z"/>
+  <path d="M74 210 C52 214 40 202 34 186 C46 196 58 200 74 194 Z"/>
+  </g>
+</svg>
