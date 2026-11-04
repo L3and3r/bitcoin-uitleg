@@ -1,0 +1,18 @@
+{
+  "standaard": {
+    "url": "https://leander.azzamo.net",
+    "eur": 1,
+    "goaleur": 100,
+    "goalname": "Iets leuks",
+    "count": 3,
+    "goaledit": 1
+  },
+  "kinderen": {
+    "zeil":  { "emoji": "⛵", "color": "#38bdf8", "goaleur": "", "goalname": "" },
+    "kat":   { "emoji": "🐱", "color": "#f472b6", "goaleur": "", "goalname": "" },
+    "wolf":  { "emoji": "🐺", "color": "#a78bfa", "goaleur": "", "goalname": "" },
+    "piano": { "emoji": "🎹", "color": "#facc15", "goaleur": "", "goalname": "" },
+    "rock":  { "emoji": "🤘", "color": "#ef4444", "goaleur": "", "goalname": "" },
+    "turn":  { "emoji": "🤸", "color": "#f97316", "goaleur": "", "goalname": "" }
+  }
+}
