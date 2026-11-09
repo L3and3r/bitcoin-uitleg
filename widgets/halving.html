@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wat is de Bitcoin halving? | l3and3r.org</title>
+<style>
+  :root {
+    --bg:#0a0a0a; --fg:#cccccc; --kop:#ffffff; --muted:#999999; --subtiel:#666666;
+    --accent:#f7931a; --accent-hover:#ffa726; --accent-2:#63a4ff;
+    --card:rgba(255,255,255,0.03); --card-accent:rgba(247,147,26,0.05);
+    --border:rgba(247,147,26,0.2);
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; padding:16px; background:var(--bg); color:var(--fg);
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height:1.6;
+  }
+  .widget { max-width:680px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; }
+  h1 { font-size:1.35rem; font-weight:700; color:var(--kop); margin:0 0 .25rem; }
+  .context { color:var(--muted); margin:0 0 1.5rem; font-size:.95rem; }
+
+  /* Dots-navigatie */
+  .dots { display:flex; gap:8px; margin-bottom:1.25rem; align-items:center; flex-wrap:wrap; }
+  .dot {
+    width:12px; height:12px; border-radius:50%; border:none; padding:0; cursor:pointer;
+    background:rgba(247,147,26,0.2); transition:background .2s, transform .15s;
+  }
+  .dot:hover { transform:scale(1.3); }
+  .dot.geweest { background:rgba(247,147,26,0.45); }
+  .dot.actief { background:var(--accent); transform:scale(1.25); }
+  .dot.toekomst { background:rgba(99,164,255,0.25); outline:1px dashed rgba(99,164,255,0.5); outline-offset:2px; }
+  .stap-teller { font-size:.8rem; color:var(--muted); margin-left:auto; white-space:nowrap; }
+
+  /* Stap-inhoud */
+  .stap-inhoud {
+    background:var(--card-accent); border:1px solid var(--border);
+    border-radius:10px; padding:16px; min-height:195px;
+  }
+  .stap-naam {
+    font-size:.75rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--accent); margin:0 0 .3rem;
+  }
+  .stap-datum { font-size:.85rem; color:var(--muted); margin:0 0 .9rem; }
+  .nu-badge {
+    display:inline-block; font-size:.65rem; font-weight:700;
+    padding:.1rem .4rem; background:rgba(247,147,26,0.15);
+    border:1px solid var(--accent); border-radius:4px;
+    color:var(--accent); vertical-align:middle; margin-left:.45rem;
+  }
+  .toekomst-badge {
+    display:inline-block; font-size:.65rem; font-weight:700;
+    padding:.1rem .4rem; background:rgba(99,164,255,0.1);
+    border:1px solid rgba(99,164,255,0.4); border-radius:4px;
+    color:var(--accent-2); vertical-align:middle; margin-left:.45rem;
+  }
+  .beloning-groot {
+    font-size:2.5rem; font-weight:800; font-variant-numeric:tabular-nums;
+    color:var(--accent); line-height:1;
+  }
+  .stap-inhoud.toekomst .beloning-groot { color:var(--accent-2); }
+  .beloning-label { font-size:.82rem; color:var(--muted); margin:.2rem 0 1rem; }
+
+  /* Progressiebalk */
+  .prog-label {
+    font-size:.8rem; color:var(--muted); display:flex;
+    justify-content:space-between; margin-bottom:.35rem;
+    font-variant-numeric:tabular-nums;
+  }
+  .prog-balk { height:10px; border-radius:999px; background:rgba(255,255,255,0.08); overflow:hidden; }
+  .prog-vulling { height:100%; border-radius:999px; background:linear-gradient(90deg, var(--accent), var(--accent-hover)); transition:width .45s ease; }
+
+  .stap-uitleg { font-size:.9rem; margin:.9rem 0 0; }
+
+  /* Navigatieknoppen */
+  .nav { display:flex; gap:.75rem; margin-top:1.25rem; }
+  button {
+    font:inherit; font-weight:600; padding:.55rem 1.1rem; border-radius:8px;
+    border:1px solid var(--accent); background:transparent; color:var(--accent);
+    cursor:pointer; transition:background .15s; flex:1;
+  }
+  button:hover:not(:disabled) { background:rgba(247,147,26,0.1); }
+  button.primair { background:var(--accent); color:#0a0a0a; }
+  button.primair:hover:not(:disabled) { background:var(--accent-hover); border-color:var(--accent-hover); }
+  button:disabled { opacity:.35; cursor:default; pointer-events:none; }
+
+  /* Countdown */
+  .countdown {
+    margin-top:1.5rem; padding:14px 16px;
+    background:rgba(99,164,255,0.04); border:1px solid rgba(99,164,255,0.2); border-radius:10px;
+  }
+  .countdown-kop { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-2); margin:0 0 .7rem; }
+  .countdown-waarden { display:flex; gap:1.25rem; flex-wrap:wrap; }
+  .countdown-eenheid { text-align:center; min-width:3rem; }
+  .countdown-getal { font-size:1.9rem; font-weight:800; font-variant-numeric:tabular-nums; color:var(--kop); display:block; }
+  .countdown-naam { font-size:.7rem; color:var(--muted); }
+  .countdown-info { font-size:.8rem; color:var(--subtiel); margin-top:.7rem; }
+
+  .voetnoot { font-size:.82rem; color:var(--muted); border-top:1px solid var(--border); margin-top:1.5rem; padding-top:.75rem; }
+  .voetnoot p { margin:.35rem 0; }
+
+  @media (max-width:420px) {
+    .beloning-groot { font-size:2rem; }
+    .countdown-getal { font-size:1.5rem; }
+  }
+</style>
+</head>
+<body>
+<main class="widget">
+  <h1>Wat is de Bitcoin <abbr title="Halvering: de blokbeloning voor miners wordt elke ~4 jaar precies gehalveerd">halving</abbr>?</h1>
+  <p class="context">Elke 210.000 blokken halveert de beloning die miners ontvangen voor het toevoegen van een nieuw blok. Daardoor wordt het aanbod van nieuwe bitcoin steeds kleiner — tot het stopt bij 21 miljoen.</p>
+
+  <div class="dots" id="dots" role="tablist" aria-label="Navigeer tussen halvings"></div>
+
+  <div class="stap-inhoud" id="stap-inhoud" aria-live="polite"></div>
+
+  <div class="nav">
+    <button id="btn-vorige" onclick="navigeer(-1)">&#8592; Vorige</button>
+    <button id="btn-volgende" class="primair" onclick="navigeer(1)">Volgende &#8594;</button>
+  </div>
+
+  <div class="countdown" id="countdown">
+    <div class="countdown-kop">Volgende halving — blok 1.050.000</div>
+    <div class="countdown-waarden" id="countdown-waarden"></div>
+    <div class="countdown-info" id="countdown-info"></div>
+  </div>
+
+  <footer class="voetnoot">
+    <p>Aannames: gemiddelde bloktijd van 10 minuten; halvings vinden precies bij blok 210.000, 420.000 … 1.050.000 … plaats. Werkelijke timing wijkt licht af. BTC-aantallen zijn berekend als 210.000 &times; beloning per periode (cumulatief). Peildatum: november 2026.</p>
+    <p>Dit is een rekenvoorbeeld ter uitleg, geen financieel advies.</p>
+  </footer>
+</main>
+
+<script>
+const STAPPEN = [
+  {
+    naam: "Genesis",
+    datum: "3 januari 2009",
+    blok: null,
+    beloning: 50,
+    aangemaakt: 0,
+    huidig: false,
+    toekomst: false,
+    uitleg: "Bitcoin start. Voor elk nieuw blok dat miners toevoegen aan de <abbr title='De onveranderbare ketting van alle transacties'>blockchain</abbr>, ontvangen zij 50 BTC als beloning. Er zijn dan nog vrijwel geen bitcoin in omloop."
+  },
+  {
+    naam: "1e halving",
+    datum: "28 november 2012",
+    blok: 210000,
+    beloning: 25,
+    aangemaakt: 10500000,
+    huidig: false,
+    toekomst: false,
+    uitleg: "Na precies 210.000 blokken (bijna vier jaar) halveert de beloning voor het eerst: van 50 naar 25 BTC per blok. Er bestaan dan 10,5 miljoen bitcoin — de helft van het uiteindelijke maximum."
+  },
+  {
+    naam: "2e halving",
+    datum: "9 juli 2016",
+    blok: 420000,
+    beloning: 12.5,
+    aangemaakt: 15750000,
+    huidig: false,
+    toekomst: false,
+    uitleg: "De beloning gaat naar 12,5 BTC per blok. Driekwart van alle bitcoin bestaat inmiddels al — terwijl de munt nog maar zeven jaar oud is."
+  },
+  {
+    naam: "3e halving",
+    datum: "11 mei 2020",
+    blok: 630000,
+    beloning: 6.25,
+    aangemaakt: 18375000,
+    huidig: false,
+    toekomst: false,
+    uitleg: "Na de derde halving bedraagt de beloning 6,25 BTC. Meer dan 87% van alle bitcoin is al aangemaakt. Toch wordt er nog altijd bijna een miljoen BTC per jaar bijgemaakt."
+  },
+  {
+    naam: "4e halving",
+    datum: "19 april 2024",
+    blok: 840000,
+    beloning: 3.125,
+    aangemaakt: 19687500,
+    huidig: true,
+    toekomst: false,
+    uitleg: "De huidige periode. Miners ontvangen 3,125 BTC per blok. Bijna 94% van alle bitcoin bestaat al. De nieuwe aanmaak per jaar is nog maar een fractie van het totaal."
+  },
+  {
+    naam: "5e halving",
+    datum: "verwacht ~april 2028",
+    blok: 1050000,
+    beloning: 1.5625,
+    aangemaakt: 20343750,
+    huidig: false,
+    toekomst: true,
+    uitleg: "Na de vijfde halving is de beloning nog maar 1,5625 BTC. Meer dan 96% van alle bitcoin is dan aangemaakt. De jaarlijkse nieuwe aanmaak zakt onder de 0,4% van het totaal."
+  },
+  {
+    naam: "Eindstand",
+    datum: "verwacht ~2140",
+    blok: 6930000,
+    beloning: 0,
+    aangemaakt: 20999999.98,
+    huidig: false,
+    toekomst: true,
+    uitleg: "Na 33 halvings, rond het jaar 2140, wordt de laatste bitcoin aangemaakt. Daarna krijgen miners alleen nog <abbr title='Kleine vergoedingen die verzenders betalen voor een transactie'>transactiekosten</abbr> als beloning. Het totaal komt op bijna precies 21 miljoen — nooit meer."
+  }
+];
+
+const MAX_BTC = 21000000;
+const HALVING4_DATUM = new Date('2024-04-19T00:00:00Z');
+const HALVING4_BLOK = 840000;
+const HALVING5_BLOK = 1050000;
+const BLOK_MS = 600000;
+
+let stap = 4;
+
+function nl(n, dec) {
+  return new Intl.NumberFormat('nl-NL', { maximumFractionDigits: dec ?? 0 }).format(n);
+}
+
+function berekenHuidigBlok() {
+  return Math.floor(HALVING4_BLOK + (Date.now() - HALVING4_DATUM) / BLOK_MS);
+}
+
+function renderDots() {
+  const el = document.getElementById('dots');
+  el.innerHTML = '';
+  STAPPEN.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'dot' + (i === stap ? ' actief' : i < stap ? ' geweest' : s.toekomst ? ' toekomst' : '');
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-label', s.naam);
+    btn.setAttribute('aria-selected', i === stap ? 'true' : 'false');
+    btn.onclick = () => { stap = i; render(); };
+    el.appendChild(btn);
+  });
+  const teller = document.createElement('span');
+  teller.className = 'stap-teller';
+  teller.textContent = `${stap + 1} / ${STAPPEN.length}`;
+  el.appendChild(teller);
+}
+
+function renderStap() {
+  const s = STAPPEN[stap];
+  const pct = s.aangemaakt / MAX_BTC * 100;
+
+  const naamBadge = s.huidig
+    ? '<span class="nu-badge">Nu</span>'
+    : s.toekomst ? '<span class="toekomst-badge">Toekomst</span>' : '';
+
+  const datumRegel = s.blok
+    ? `${s.datum} &mdash; blok ${nl(s.blok)}`
+    : s.datum;
+
+  const beloningTxt = s.beloning === 0
+    ? '0 BTC'
+    : (s.beloning < 1 ? nl(s.beloning, 5) : nl(s.beloning, 3)) + ' BTC';
+
+  const aangemTxt = s.aangemaakt === 0
+    ? '0 van de 21 miljoen BTC'
+    : `${nl(s.aangemaakt / 1e6, 3)} van de 21 miljoen BTC (${nl(pct, 1)}%)`;
+
+  const el = document.getElementById('stap-inhoud');
+  el.className = 'stap-inhoud' + (s.toekomst ? ' toekomst' : '');
+  el.innerHTML = `
+    <div class="stap-naam">${s.naam}${naamBadge}</div>
+    <div class="stap-datum">${datumRegel}</div>
+    <div class="beloning-groot">${beloningTxt}</div>
+    <div class="beloning-label">beloning per blok</div>
+    <div class="prog-label">
+      <span>Aangemaakt</span>
+      <span>${aangemTxt}</span>
+    </div>
+    <div class="prog-balk"><div class="prog-vulling" style="width:${pct}%"></div></div>
+    <p class="stap-uitleg">${s.uitleg}</p>
+  `;
+
+  document.getElementById('btn-vorige').disabled = stap === 0;
+  document.getElementById('btn-volgende').disabled = stap === STAPPEN.length - 1;
+}
+
+function renderCountdown() {
+  const huidigBlok = berekenHuidigBlok();
+  const over = HALVING5_BLOK - huidigBlok;
+
+  if (over <= 0) {
+    document.getElementById('countdown').style.display = 'none';
+    return;
+  }
+
+  const ms = over * BLOK_MS;
+  const dagen = Math.floor(ms / 86400000);
+  const uren = Math.floor((ms % 86400000) / 3600000);
+  const min = Math.floor((ms % 3600000) / 60000);
+  const verwacht = new Date(Date.now() + ms);
+
+  document.getElementById('countdown-waarden').innerHTML = `
+    <div class="countdown-eenheid">
+      <span class="countdown-getal">${nl(dagen)}</span>
+      <span class="countdown-naam">dagen</span>
+    </div>
+    <div class="countdown-eenheid">
+      <span class="countdown-getal">${String(uren).padStart(2,'0')}</span>
+      <span class="countdown-naam">uren</span>
+    </div>
+    <div class="countdown-eenheid">
+      <span class="countdown-getal">${String(min).padStart(2,'0')}</span>
+      <span class="countdown-naam">minuten</span>
+    </div>
+  `;
+
+  document.getElementById('countdown-info').textContent =
+    `Huidig blok: ~${nl(huidigBlok)} · Nog ${nl(over)} blokken · Verwacht ${verwacht.toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' })}`;
+}
+
+function navigeer(d) {
+  const n = stap + d;
+  if (n >= 0 && n < STAPPEN.length) { stap = n; render(); }
+}
+
+function render() {
+  renderDots();
+  renderStap();
+  renderCountdown();
+}
+
+render();
+setInterval(renderCountdown, 60000);
+</script>
+</body>
+</html>
