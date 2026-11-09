@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hoe lost een miner de puzzel op? | l3and3r.org</title>
+<style>
+  :root {
+    --bg:#0a0a0a; --fg:#cccccc; --kop:#ffffff; --muted:#999999; --subtiel:#666666;
+    --accent:#f7931a; --accent-hover:#ffa726; --accent-2:#63a4ff;
+    --card:rgba(255,255,255,0.03); --card-accent:rgba(247,147,26,0.05);
+    --border:rgba(247,147,26,0.2);
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; padding:16px; background:var(--bg); color:var(--fg);
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height:1.6;
+  }
+  .widget { max-width:720px; margin:0 auto; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; }
+  h1 { font-size:1.35rem; font-weight:700; color:var(--kop); margin:0 0 .25rem; }
+  .context { color:var(--muted); margin:0 0 1.25rem; font-size:.95rem; }
+
+  /* Blokdata */
+  .blokdata {
+    background:rgba(0,0,0,0.35); border:1px solid var(--border); border-radius:8px;
+    padding:11px 14px; margin-bottom:1.25rem;
+  }
+  .blokdata-label { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:.3rem; }
+  .blokdata-tekst { font-family:ui-monospace,'Cascadia Code',Consolas,monospace; font-size:.85rem; color:var(--fg); word-break:break-all; }
+  .nonce-mark { color:var(--accent); font-weight:700; }
+
+  /* Slider */
+  label { display:block; font-weight:600; margin:0 0 .45rem; }
+  input[type=range] { width:100%; accent-color:var(--accent); }
+  .slider-extremen { display:flex; justify-content:space-between; font-size:.72rem; color:var(--subtiel); margin-top:.15rem; }
+  .eis-wrapper { margin:.6rem 0 1.25rem; font-size:.9rem; color:var(--muted); }
+  .eis-code { font-family:ui-monospace,Consolas,monospace; color:var(--accent); background:rgba(247,147,26,0.1); padding:.15rem .45rem; border-radius:4px; border:1px solid rgba(247,147,26,0.25); }
+  .eis-gem { font-size:.8rem; color:var(--subtiel); }
+
+  /* Hash display */
+  .hash-sectie { margin:1.25rem 0 1rem; }
+  .hash-label-rij { display:flex; justify-content:space-between; align-items:center; margin-bottom:.4rem; font-size:.8rem; }
+  .hash-label-rij span:first-child { color:var(--muted); }
+  .hash-display {
+    font-family:ui-monospace,'Cascadia Code',Consolas,monospace; font-size:.85rem;
+    word-break:break-all; padding:10px 14px; border-radius:8px;
+    background:rgba(0,0,0,0.4); border:1px solid var(--border);
+    min-height:3rem; color:var(--muted); line-height:1.5;
+    transition:border-color .25s;
+  }
+  .hash-display.actief { border-color:rgba(247,147,26,0.5); }
+  .hash-display.geldig { border-color:var(--accent); background:rgba(247,147,26,0.05); }
+  .hash-nullen { color:var(--accent); font-weight:700; }
+
+  /* Stats */
+  .stats { display:flex; gap:2rem; flex-wrap:wrap; margin:.25rem 0 1.25rem; }
+  .stat-getal { font-size:1.75rem; font-weight:800; font-variant-numeric:tabular-nums; color:var(--kop); line-height:1.1; }
+  .stat-naam { font-size:.75rem; color:var(--muted); }
+
+  /* Knoppen */
+  .nav { display:flex; gap:.75rem; }
+  button { font:inherit; font-weight:600; padding:.55rem 1.1rem; border-radius:8px; border:1px solid var(--accent); background:transparent; color:var(--accent); cursor:pointer; transition:background .15s; flex:1; }
+  button:hover:not(:disabled) { background:rgba(247,147,26,0.1); }
+  button.primair { background:var(--accent); color:#0a0a0a; }
+  button.primair:hover:not(:disabled) { background:var(--accent-hover); border-color:var(--accent-hover); }
+  button:disabled { opacity:.35; pointer-events:none; }
+
+  .duiding { font-weight:600; margin:.9rem 0 0; min-height:1.4rem; }
+  .duiding.succes { color:var(--accent); }
+
+  .voetnoot { font-size:.82rem; color:var(--muted); border-top:1px solid var(--border); margin-top:1.5rem; padding-top:.75rem; }
+  .voetnoot p { margin:.35rem 0; }
+
+  @media(max-width:420px) {
+    .stat-getal { font-size:1.4rem; }
+    .hash-display { font-size:.75rem; }
+    .stats { gap:1.25rem; }
+  }
+</style>
+</head>
+<body>
+<main class="widget">
+  <h1>Hoe lost een miner de puzzel op?</h1>
+  <p class="context">Een miner zoekt een getal (een <abbr title="Number used once — een getal dat één keer gebruikt wordt voor dit ene blok">nonce</abbr>) zodat de <abbr title="Een digitale vingerafdruk: hetzelfde invoer geeft altijd dezelfde uitvoer, maar je kunt de uitvoer niet terugrekenen naar de invoer">hash</abbr> van het blok begint met genoeg nullen. Hoe meer nullen vereist, hoe meer pogingen nodig.</p>
+
+  <div class="blokdata">
+    <div class="blokdata-label">Blokinhoud die gehasht wordt (vereenvoudigd)</div>
+    <div class="blokdata-tekst" id="blokdata-tekst">
+      Blok&nbsp;870001&nbsp;·&nbsp;2026-11-09&nbsp;·&nbsp;3125&nbsp;sats&nbsp;·&nbsp;nonce:&nbsp;<span class="nonce-mark" id="nonce-mark">0</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="slider">Moeilijkheid — aantal vereiste voorloopnullen</label>
+    <input type="range" id="slider" min="1" max="4" value="2" oninput="sliderGewijzigd()">
+    <div class="slider-extremen"><span>Eenvoudiger</span><span>Moeilijker</span></div>
+  </div>
+  <div class="eis-wrapper">
+    Hash moet beginnen met: <span class="eis-code" id="eis-code">00…</span>
+    <span class="eis-gem">&nbsp;(gemiddeld ~<span id="eis-gem">256</span> pogingen)</span>
+  </div>
+
+  <div class="hash-sectie">
+    <div class="hash-label-rij">
+      <span>SHA-256 hash</span>
+      <span id="status-label" style="color:var(--muted)">wacht op start</span>
+    </div>
+    <div class="hash-display" id="hash-display">—</div>
+  </div>
+
+  <div class="stats">
+    <div>
+      <div class="stat-getal" id="stat-nonce">0</div>
+      <div class="stat-naam">pogingen</div>
+    </div>
+    <div>
+      <div class="stat-getal" id="stat-tijd">—</div>
+      <div class="stat-naam">seconden</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="primair" id="btn-start" onclick="startStop()">Start</button>
+    <button id="btn-reset" onclick="resetWidget()">Opnieuw</button>
+  </div>
+
+  <p class="duiding" id="duiding" aria-live="polite">Zet de moeilijkheid hoger en kijk hoeveel meer pogingen nodig zijn.</p>
+
+  <footer class="voetnoot">
+    <p>Vereenvoudigd: echte Bitcoin-blokken bevatten honderden transacties, een Merkle-root, tijdstempel en versienummer. Bitcoin gebruikt dubbel-SHA-256. De werkelijke moeilijkheid staat gelijk aan tientallen hexadecimale voorloopnullen.</p>
+    <p>Peildatum: november 2026.</p>
+  </footer>
+</main>
+
+<script>
+/* ── Compacte synchrone SHA-256 (publiek domein) ── */
+function sha256hex(msg) {
+  const K = [
+    0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+    0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+    0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+    0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+    0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+    0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+    0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+    0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
+  ];
+  const enc = new TextEncoder().encode(msg);
+  const L = enc.length;
+  const pLen = Math.ceil((L + 9) / 64) * 64;
+  const p = new Uint8Array(pLen);
+  p.set(enc); p[L] = 0x80;
+  new DataView(p.buffer).setUint32(pLen - 4, L * 8, false);
+  let [h0,h1,h2,h3,h4,h5,h6,h7] = [
+    0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,
+    0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19
+  ];
+  const dv = new DataView(p.buffer);
+  const r = (n, x) => (x >>> n) | (x << (32 - n));
+  const s = (...a) => a.reduce((x, y) => (x + y) | 0);
+  for (let i = 0; i < pLen; i += 64) {
+    const w = new Int32Array(64);
+    for (let j = 0; j < 16; j++) w[j] = dv.getInt32(i + j * 4, false);
+    for (let j = 16; j < 64; j++) {
+      const s0 = r(7,w[j-15]) ^ r(18,w[j-15]) ^ (w[j-15] >>> 3);
+      const s1 = r(17,w[j-2])  ^ r(19,w[j-2])  ^ (w[j-2]  >>> 10);
+      w[j] = s(w[j-16], s0, w[j-7], s1);
+    }
+    let [a,b,c,d,e,f,g,h] = [h0,h1,h2,h3,h4,h5,h6,h7];
+    for (let j = 0; j < 64; j++) {
+      const S1  = r(6,e)  ^ r(11,e) ^ r(25,e);
+      const ch  = (e & f) ^ (~e & g);
+      const t1  = s(h, S1, ch, K[j], w[j]);
+      const S0  = r(2,a)  ^ r(13,a) ^ r(22,a);
+      const maj = (a & b) ^ (a & c) ^ (b & c);
+      const t2  = s(S0, maj);
+      h=g; g=f; f=e; e=s(d,t1); d=c; c=b; b=a; a=s(t1,t2);
+    }
+    h0=s(h0,a); h1=s(h1,b); h2=s(h2,c); h3=s(h3,d);
+    h4=s(h4,e); h5=s(h5,f); h6=s(h6,g); h7=s(h7,h);
+  }
+  return [h0,h1,h2,h3,h4,h5,h6,h7].map(n => (n >>> 0).toString(16).padStart(8,'0')).join('');
+}
+
+/* ── Helpers ── */
+const BLOK_PREFIX = 'Blok 870001 · 2026-11-09 · 3125 sats · nonce: ';
+const GEM = { 1: 16, 2: 256, 3: 4096, 4: 65536 };
+const nl = n => new Intl.NumberFormat('nl-NL').format(n);
+const nlDec = (n, d) => new Intl.NumberFormat('nl-NL', { maximumFractionDigits: d }).format(n);
+
+let actief = false;
+let nonce  = 0;
+let startMs = 0;
+let timer  = null;
+
+function getMoeilijk() { return parseInt(document.getElementById('slider').value, 10); }
+
+/* ── UI-updates ── */
+function zetHashDisplay(hash, gevonden) {
+  const el = document.getElementById('hash-display');
+  const m = getMoeilijk();
+  if (!hash || hash === '—') { el.textContent = '—'; el.className = 'hash-display'; return; }
+  el.className = 'hash-display' + (gevonden ? ' geldig' : ' actief');
+  el.innerHTML = `<span class="hash-nullen">${hash.slice(0, m)}</span>${hash.slice(m)}`;
+}
+
+function zetStats(nonceWaarde) {
+  document.getElementById('nonce-mark').textContent = nonceWaarde;
+  document.getElementById('stat-nonce').textContent = nl(nonceWaarde + 1);
+  if (startMs > 0) {
+    document.getElementById('stat-tijd').textContent = nlDec((Date.now() - startMs) / 1000, 1);
+  }
+}
+
+/* ── Mining-loop ── */
+function mineStap() {
+  if (!actief) return;
+  const doel  = '0'.repeat(getMoeilijk());
+  const BATCH = 700;
+  let hash    = '';
+
+  for (let i = 0; i < BATCH; i++) {
+    hash = sha256hex(BLOK_PREFIX + nonce);
+    if (hash.startsWith(doel)) {
+      actief = false;
+      zetHashDisplay(hash, true);
+      zetStats(nonce);
+      document.getElementById('status-label').textContent = '✓ geldig blok gevonden';
+      document.getElementById('status-label').style.color = 'var(--accent)';
+      document.getElementById('btn-start').textContent = 'Start';
+      document.getElementById('btn-start').classList.add('primair');
+      const pogingen = nonce + 1;
+      const sec = (Date.now() - startMs) / 1000;
+      const duiding = document.getElementById('duiding');
+      duiding.textContent = `Na ${nl(pogingen)} pogingen gevonden in ${nlDec(sec, 1)} s. Professionele miners doen dit miljarden keren per seconde.`;
+      duiding.className = 'duiding succes';
+      return;
+    }
+    nonce++;
+  }
+
+  zetHashDisplay(hash, false);
+  zetStats(nonce - 1);
+  timer = setTimeout(mineStap, 0);
+}
+
+/* ── Knoppen ── */
+function startStop() {
+  const btn = document.getElementById('btn-start');
+  if (actief) {
+    actief = false;
+    clearTimeout(timer);
+    btn.textContent = 'Doorgaan';
+    btn.classList.add('primair');
+    document.getElementById('status-label').textContent = 'gepauzeerd';
+    document.getElementById('status-label').style.color = 'var(--muted)';
+  } else {
+    if (nonce === 0) startMs = Date.now();
+    actief = true;
+    btn.textContent = 'Pauzeer';
+    btn.classList.remove('primair');
+    document.getElementById('status-label').textContent = 'aan het minen…';
+    document.getElementById('status-label').style.color = 'var(--muted)';
+    document.getElementById('hash-display').className = 'hash-display actief';
+    document.getElementById('duiding').textContent = '';
+    document.getElementById('duiding').className = 'duiding';
+    mineStap();
+  }
+}
+
+function resetWidget() {
+  actief = false;
+  clearTimeout(timer);
+  nonce = 0; startMs = 0;
+  zetHashDisplay('—', false);
+  document.getElementById('nonce-mark').textContent = '0';
+  document.getElementById('stat-nonce').textContent = '0';
+  document.getElementById('stat-tijd').textContent = '—';
+  document.getElementById('status-label').textContent = 'wacht op start';
+  document.getElementById('status-label').style.color = 'var(--muted)';
+  document.getElementById('btn-start').textContent = 'Start';
+  document.getElementById('btn-start').classList.add('primair');
+  document.getElementById('duiding').textContent = 'Zet de moeilijkheid hoger en kijk hoeveel meer pogingen nodig zijn.';
+  document.getElementById('duiding').className = 'duiding';
+}
+
+function sliderGewijzigd() {
+  const m = getMoeilijk();
+  document.getElementById('eis-code').textContent = '0'.repeat(m) + '…';
+  document.getElementById('eis-gem').textContent = nl(GEM[m]);
+  resetWidget();
+}
+</script>
+</body>
+</html>
